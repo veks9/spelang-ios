@@ -96,10 +96,3 @@ extension UIView {
         self.layer.mask = maskLayer
     }
 }
-
-extension UIView {
-    func gesture(_ gestureType: GestureType = .tap()) ->
-        GesturePublisher {
-            .init(view: self, gestureType: gestureType)
-        }
-}

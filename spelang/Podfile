@@ -12,6 +12,7 @@ target 'spelang' do
   pod 'CombineExt'
   pod 'Kingfisher'
   pod 'Alamofire', '~> 5.2'
+  pod 'GoogleMLKit/DigitalInkRecognition', '3.2.0'
 
 end
 
