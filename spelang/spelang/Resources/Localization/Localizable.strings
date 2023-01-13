@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  spelang
+
+  Created by Vedran Hernaus on 13.01.2023..
+  
+*/
+
+// MARK: - Login
+"login_title" = "Spelang";
+"login_subtitle" = "Learn spelling the fun way!";
+"login_first_text_field_placeholder" = "Username";
+"login_second_text_field_placeholder" = "PIN";
+"login_submit_button_title" = "Login";

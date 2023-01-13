@@ -14,11 +14,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         disableSnapKitMessagesInsideDebugger()
-        let viewModel = TestViewModel()
-        let rootViewController = UINavigationController(
-            rootViewController: TestViewController(viewModel: viewModel)
-        )
-        window?.rootViewController = rootViewController
+        window?.rootViewController = createRootViewController()
         window?.makeKeyAndVisible()
         
         return true
@@ -30,5 +26,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     func disableSnapKitMessagesInsideDebugger() {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+    }
+    
+    func createRootViewController() -> UIViewController {
+        let router = LoginRouter()
+        let viewModel = LoginViewModel(router: router)
+        return LoginViewController(viewModel: viewModel)
     }
 }
