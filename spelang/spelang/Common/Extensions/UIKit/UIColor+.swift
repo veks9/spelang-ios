@@ -40,9 +40,9 @@ extension UIColor {
     /// #c8cdcd a: 0.8
     static let shadowColor = UIColor(rgb: 0xc8cdcd).withAlphaComponent(0.8)
     
-    /// light: #8D99AE,  dark: #8D99AE
+    /// light: #313131,  dark: #313131
     static var grayDark: UIColor {
-        UIColor(light: UIColor(rgb: 0x8D99AE), dark: UIColor(rgb: 0x8D99AE))
+        UIColor(light: UIColor(rgb: 0x313131), dark: UIColor(rgb: 0x313131))
     }
     
     /// light: #C4CEDF,  dark: #C4CEDF

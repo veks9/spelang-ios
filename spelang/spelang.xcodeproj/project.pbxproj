@@ -3,10 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4602971D2520054FA72 /* LoginRouter.swift */; };
+		7140F4652971D2520054FA72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4612971D2520054FA72 /* LoginViewController.swift */; };
+		7140F4662971D2520054FA72 /* LoginContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4622971D2520054FA72 /* LoginContext.swift */; };
+		7140F4672971D2520054FA72 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4632971D2520054FA72 /* LoginViewModel.swift */; };
+		7140F46A2971D3E90054FA72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7140F4692971D3E90054FA72 /* Localizable.strings */; };
+		7140F4702971DDB20054FA72 /* LoginTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F46E2971DDB20054FA72 /* LoginTextFieldView.swift */; };
+		7140F4712971DDB20054FA72 /* LoginTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F46F2971DDB20054FA72 /* LoginTextFieldViewModel.swift */; };
+		7140F4742971E61C0054FA72 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4732971E61C0054FA72 /* UserService.swift */; };
+		7140F4762971E6200054FA72 /* UserServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4752971E6200054FA72 /* UserServicing.swift */; };
+		7140F4792971E6790054FA72 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4782971E6790054FA72 /* LoginUserRequest.swift */; };
+		7140F47B2971E7EE0054FA72 /* LoginUserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F47A2971E7EE0054FA72 /* LoginUserRequestModel.swift */; };
+		7140F47D2971E8550054FA72 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F47C2971E8550054FA72 /* User.swift */; };
 		716B6E02295A242D0096F780 /* Publishers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD8295A242D0096F780 /* Publishers+.swift */; };
 		716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD9295A242D0096F780 /* AnyPublisher+.swift */; };
 		716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DDB295A242D0096F780 /* UINavigationController+.swift */; };
@@ -65,7 +77,6 @@
 		716B6E5A295A25B90096F780 /* ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6E57295A25B90096F780 /* ErrorCode.swift */; };
 		716B6E5B295A25B90096F780 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6E58295A25B90096F780 /* ErrorResponse.swift */; };
 		71CBE3752950D2E700DB8F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CBE3742950D2E700DB8F41 /* AppDelegate.swift */; };
-		71CBE3792950D2E700DB8F41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CBE3782950D2E700DB8F41 /* ViewController.swift */; };
 		71CBE37E2950D2EA00DB8F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71CBE37D2950D2EA00DB8F41 /* Assets.xcassets */; };
 		71CBE3812950D2EA00DB8F41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71CBE37F2950D2EA00DB8F41 /* LaunchScreen.storyboard */; };
 		8519C04FFCE67835AB7EB695 /* Pods_spelang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237145637476E416F07BEB0 /* Pods_spelang.framework */; };
@@ -73,6 +84,18 @@
 
 /* Begin PBXFileReference section */
 		5237145637476E416F07BEB0 /* Pods_spelang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spelang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7140F4602971D2520054FA72 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		7140F4612971D2520054FA72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7140F4622971D2520054FA72 /* LoginContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContext.swift; sourceTree = "<group>"; };
+		7140F4632971D2520054FA72 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7140F4692971D3E90054FA72 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		7140F46E2971DDB20054FA72 /* LoginTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFieldView.swift; sourceTree = "<group>"; };
+		7140F46F2971DDB20054FA72 /* LoginTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFieldViewModel.swift; sourceTree = "<group>"; };
+		7140F4732971E61C0054FA72 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		7140F4752971E6200054FA72 /* UserServicing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServicing.swift; sourceTree = "<group>"; };
+		7140F4782971E6790054FA72 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		7140F47A2971E7EE0054FA72 /* LoginUserRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequestModel.swift; sourceTree = "<group>"; };
+		7140F47C2971E8550054FA72 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		716B6DD8295A242D0096F780 /* Publishers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+.swift"; sourceTree = "<group>"; };
 		716B6DD9295A242D0096F780 /* AnyPublisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+.swift"; sourceTree = "<group>"; };
 		716B6DDB295A242D0096F780 /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -132,7 +155,6 @@
 		716B6E58295A25B90096F780 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		71CBE3712950D2E700DB8F41 /* spelang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spelang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CBE3742950D2E700DB8F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		71CBE3782950D2E700DB8F41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		71CBE37D2950D2EA00DB8F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71CBE3802950D2EA00DB8F41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71CBE3822950D2EA00DB8F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,9 +183,57 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7140F45F2971D23F0054FA72 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7140F46B2971DD870054FA72 /* Views */,
+				7140F4602971D2520054FA72 /* LoginRouter.swift */,
+				7140F4612971D2520054FA72 /* LoginViewController.swift */,
+				7140F4622971D2520054FA72 /* LoginContext.swift */,
+				7140F4632971D2520054FA72 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7140F4682971D3D90054FA72 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4692971D3E90054FA72 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		7140F46B2971DD870054FA72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7140F46E2971DDB20054FA72 /* LoginTextFieldView.swift */,
+				7140F46F2971DDB20054FA72 /* LoginTextFieldViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7140F4722971E6110054FA72 /* LoginService */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4772971E66D0054FA72 /* Requests */,
+				7140F4732971E61C0054FA72 /* UserService.swift */,
+				7140F4752971E6200054FA72 /* UserServicing.swift */,
+			);
+			path = LoginService;
+			sourceTree = "<group>";
+		};
+		7140F4772971E66D0054FA72 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4782971E6790054FA72 /* LoginUserRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		716B6DD2295A23F00096F780 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7140F4682971D3D90054FA72 /* Localization */,
 				716B6E4E295A24CD0096F780 /* Assets */,
 				716B6E4C295A24CD0096F780 /* Constants */,
 			);
@@ -182,6 +252,7 @@
 		716B6DD4295A24000096F780 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7140F45F2971D23F0054FA72 /* Login */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -346,6 +417,8 @@
 			children = (
 				716B6E54295A25B90096F780 /* Base */,
 				716B6E56295A25B90096F780 /* Error */,
+				7140F47A2971E7EE0054FA72 /* LoginUserRequestModel.swift */,
+				7140F47C2971E8550054FA72 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +426,7 @@
 		716B6E4B295A24860096F780 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7140F4722971E6110054FA72 /* LoginService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -417,7 +491,6 @@
 				716B6DD3295A23F60096F780 /* API */,
 				716B6DD2295A23F00096F780 /* Resources */,
 				71CBE3742950D2E700DB8F41 /* AppDelegate.swift */,
-				71CBE3782950D2E700DB8F41 /* ViewController.swift */,
 				71CBE37F2950D2EA00DB8F41 /* LaunchScreen.storyboard */,
 				71CBE3822950D2EA00DB8F41 /* Info.plist */,
 			);
@@ -470,7 +543,7 @@
 				};
 			};
 			buildConfigurationList = 71CBE36C2950D2E700DB8F41 /* Build configuration list for PBXProject "spelang" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -493,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71CBE3812950D2EA00DB8F41 /* LaunchScreen.storyboard in Resources */,
+				7140F46A2971D3E90054FA72 /* Localizable.strings in Resources */,
 				71CBE37E2950D2EA00DB8F41 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,6 +626,8 @@
 				716B6E1F295A242D0096F780 /* Array+.swift in Sources */,
 				716B6E44295A24570096F780 /* UserDefaultsStoring.swift in Sources */,
 				716B6E21295A242D0096F780 /* Data+.swift in Sources */,
+				7140F4712971DDB20054FA72 /* LoginTextFieldViewModel.swift in Sources */,
+				7140F4702971DDB20054FA72 /* LoginTextFieldView.swift in Sources */,
 				716B6E18295A242D0096F780 /* UIScreen+.swift in Sources */,
 				716B6E48295A24680096F780 /* GestureSubscription.swift in Sources */,
 				716B6E05295A242D0096F780 /* CALayer+.swift in Sources */,
@@ -560,6 +636,7 @@
 				716B6E0D295A242D0096F780 /* UIViewController+.swift in Sources */,
 				716B6E51295A24CD0096F780 /* AppConstants.swift in Sources */,
 				716B6E19295A242D0096F780 /* Int+.swift in Sources */,
+				7140F47B2971E7EE0054FA72 /* LoginUserRequestModel.swift in Sources */,
 				716B6E10295A242D0096F780 /* UICollectionView+.swift in Sources */,
 				716B6E3D295A24500096F780 /* AlertActionViewModel.swift in Sources */,
 				716B6E0F295A242D0096F780 /* UIButton+.swift in Sources */,
@@ -570,6 +647,9 @@
 				716B6E27295A242D0096F780 /* Optional+.swift in Sources */,
 				716B6E02295A242D0096F780 /* Publishers+.swift in Sources */,
 				716B6E26295A242D0096F780 /* Double+.swift in Sources */,
+				7140F4762971E6200054FA72 /* UserServicing.swift in Sources */,
+				7140F4652971D2520054FA72 /* LoginViewController.swift in Sources */,
+				7140F4742971E61C0054FA72 /* UserService.swift in Sources */,
 				716B6E24295A242D0096F780 /* Dictionary+.swift in Sources */,
 				716B6E5B295A25B90096F780 /* ErrorResponse.swift in Sources */,
 				716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */,
@@ -582,9 +662,10 @@
 				716B6E28295A242D0096F780 /* Date+.swift in Sources */,
 				716B6E23295A242D0096F780 /* TimeInterval+.swift in Sources */,
 				716B6E14295A242D0096F780 /* UIControl+.swift in Sources */,
-				71CBE3792950D2E700DB8F41 /* ViewController.swift in Sources */,
 				716B6E22295A242D0096F780 /* URL+.swift in Sources */,
+				7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */,
 				716B6E32295A24460096F780 /* APIClient.swift in Sources */,
+				7140F4662971D2520054FA72 /* LoginContext.swift in Sources */,
 				716B6E09295A242D0096F780 /* UIEdgeInsets+.swift in Sources */,
 				716B6E17295A242D0096F780 /* UIColor+.swift in Sources */,
 				71CBE3752950D2E700DB8F41 /* AppDelegate.swift in Sources */,
@@ -605,6 +686,9 @@
 				716B6E5A295A25B90096F780 /* ErrorCode.swift in Sources */,
 				716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */,
 				716B6E15295A242D0096F780 /* UITableView+.swift in Sources */,
+				7140F4792971E6790054FA72 /* LoginUserRequest.swift in Sources */,
+				7140F4672971D2520054FA72 /* LoginViewModel.swift in Sources */,
+				7140F47D2971E8550054FA72 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,7 +756,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -726,7 +810,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -750,6 +834,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -780,6 +865,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

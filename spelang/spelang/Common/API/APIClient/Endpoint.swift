@@ -9,12 +9,8 @@
 import Foundation
 
 enum Endpoint {
-    case getAllPlayers
-    case getLeagueTable
-    case getAllVenues
-    case getAllTeams
-    case getTeam(Int)
-    case getAllMatchups
+    case getUser
+    case createUser
     
     var path: String {
         return NetworkConstants.baseURLString + _path
@@ -22,18 +18,10 @@ enum Endpoint {
 
     private var _path: String {
         switch self {
-        case .getAllPlayers:
-            return "/bbl-api/v1/players"
-        case .getLeagueTable:
-            return "/bbl-api/v1/table"
-        case .getAllVenues:
-            return "/sportspress/v2/venues"
-        case .getAllTeams:
-            return "/sportspress/v2/teams"
-        case .getTeam(let id):
-            return "/sportspress/v2/teams/\(id)"
-        case .getAllMatchups:
-            return "/sportspress/v2/calendars"
+        case .getUser:
+            return "/users"
+        case .createUser:
+            return "/users"
         }
     }
 }

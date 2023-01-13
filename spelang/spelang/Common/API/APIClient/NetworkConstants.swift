@@ -9,9 +9,6 @@
 import Foundation
 
 struct NetworkConstants {
-    static let baseURLString = "https://bbl.hr/wp-json"
+    static let baseURLString = "https://spelang-production.up.railway.app"
     static let baseURL = URL(string: baseURLString)!
-    
-    static let youtubeURLString = "https://www.googleapis.com/youtube/v3/search"
-    static let youtubeURL = URL(string: youtubeURLString)!
 }
