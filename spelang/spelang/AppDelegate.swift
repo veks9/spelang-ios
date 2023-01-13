@@ -15,7 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         disableSnapKitMessagesInsideDebugger()
 
-        window?.rootViewController = createRootViewController()
+        window?.rootViewController = UINavigationController(rootViewController: createRootViewController())
         window?.makeKeyAndVisible()
         
         return true
@@ -32,6 +32,11 @@ private extension AppDelegate {
     func createRootViewController() -> UIViewController {
         let router = LoginRouter()
         let viewModel = LoginViewModel(router: router)
-        return LoginViewController(viewModel: viewModel)
+        let viewController = LoginViewController(viewModel: viewModel)
+        
+        router.viewController = viewController
+        router.delegate = viewController
+        
+        return viewController
     }
 }

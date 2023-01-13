@@ -176,3 +176,7 @@ final class LoginViewController: UIViewController {
             .store(in: &cancellables)
     }
 }
+
+// MARK: - LoginRouterDelegate
+
+extension LoginViewController: LoginRouterDelegate {}

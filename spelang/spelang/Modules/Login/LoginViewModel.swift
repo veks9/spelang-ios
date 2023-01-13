@@ -56,6 +56,7 @@ extension LoginViewModel: LoginViewModeling {
             }, receiveValue: { [weak self] user in
                 guard let self = self else { return }
                 print("🟢🟢🟢🟢\(user)🟢🟢🟢🟢")
+                self.router.navigateToTestList()
             })
             .store(in: &cancellables)
     }
