@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37ED271D2971DB370065FCFA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED271C2971DB370065FCFA /* TestViewController.swift */; };
-		37ED271F2971DB420065FCFA /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED271E2971DB420065FCFA /* TestViewModel.swift */; };
-		37ED27232971DB5F0065FCFA /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED27222971DB5F0065FCFA /* CanvasView.swift */; };
 		37ED27262971DD6A0065FCFA /* RecognizedInk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED27252971DD6A0065FCFA /* RecognizedInk.swift */; };
 		37ED27282971DD950065FCFA /* StrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED27272971DD950065FCFA /* StrokeManager.swift */; };
 		7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4602971D2520054FA72 /* LoginRouter.swift */; };
@@ -86,9 +83,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		37ED271C2971DB370065FCFA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		37ED271E2971DB420065FCFA /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
-		37ED27222971DB5F0065FCFA /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		37ED27252971DD6A0065FCFA /* RecognizedInk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedInk.swift; sourceTree = "<group>"; };
 		37ED27272971DD950065FCFA /* StrokeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeManager.swift; sourceTree = "<group>"; };
 		5237145637476E416F07BEB0 /* Pods_spelang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spelang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,24 +174,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37ED271B2971DB150065FCFA /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				37ED27212971DB4D0065FCFA /* Views */,
-				37ED271C2971DB370065FCFA /* TestViewController.swift */,
-				37ED271E2971DB420065FCFA /* TestViewModel.swift */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
-		37ED27212971DB4D0065FCFA /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				37ED27222971DB5F0065FCFA /* CanvasView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		37ED27242971DD470065FCFA /* Ink */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +261,6 @@
 		716B6DD4295A24000096F780 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				37ED271B2971DB150065FCFA /* Test */,
 				7140F45F2971D23F0054FA72 /* Login */,
 			);
 			path = Modules;
@@ -674,7 +649,6 @@
 				716B6E18295A242D0096F780 /* UIScreen+.swift in Sources */,
 				716B6E05295A242D0096F780 /* CALayer+.swift in Sources */,
 				716B6E0E295A242D0096F780 /* UILabel+.swift in Sources */,
-				37ED271D2971DB370065FCFA /* TestViewController.swift in Sources */,
 				716B6E37295A24460096F780 /* Endpoint.swift in Sources */,
 				716B6E0D295A242D0096F780 /* UIViewController+.swift in Sources */,
 				716B6E51295A24CD0096F780 /* AppConstants.swift in Sources */,
@@ -687,7 +661,6 @@
 				716B6E1B295A242D0096F780 /* BinaryInteger+.swift in Sources */,
 				716B6E25295A242D0096F780 /* Formatter+.swift in Sources */,
 				716B6E0C295A242D0096F780 /* UIImageView+.swift in Sources */,
-				37ED271F2971DB420065FCFA /* TestViewModel.swift in Sources */,
 				716B6E27295A242D0096F780 /* Optional+.swift in Sources */,
 				716B6E02295A242D0096F780 /* Publishers+.swift in Sources */,
 				716B6E26295A242D0096F780 /* Double+.swift in Sources */,
@@ -727,7 +700,6 @@
 				716B6E43295A24570096F780 /* UserDefaultsStorage.swift in Sources */,
 				716B6E12295A242D0096F780 /* MessagePresenter+.swift in Sources */,
 				716B6E59295A25B90096F780 /* Model.swift in Sources */,
-				37ED27232971DB5F0065FCFA /* CanvasView.swift in Sources */,
 				716B6E5A295A25B90096F780 /* ErrorCode.swift in Sources */,
 				716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */,
 				716B6E15295A242D0096F780 /* UITableView+.swift in Sources */,
