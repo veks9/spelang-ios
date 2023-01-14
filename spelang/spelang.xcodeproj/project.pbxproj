@@ -29,6 +29,9 @@
 		7140F48D2971F2C50054FA72 /* TestQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4892971F2C50054FA72 /* TestQuestionViewController.swift */; };
 		7140F48E2971F2C50054FA72 /* TestQuestionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F48A2971F2C50054FA72 /* TestQuestionContext.swift */; };
 		7140F48F2971F2C50054FA72 /* TestQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F48B2971F2C50054FA72 /* TestQuestionViewModel.swift */; };
+		7140F4952972C5BD0054FA72 /* TestQuestionTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4932972C5BC0054FA72 /* TestQuestionTopView.swift */; };
+		7140F4962972C5BD0054FA72 /* TestQuestionTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4942972C5BD0054FA72 /* TestQuestionTopViewModel.swift */; };
+		7140F49A2972CDF50054FA72 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4992972CDF50054FA72 /* GradientView.swift */; };
 		716B6E02295A242D0096F780 /* Publishers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD8295A242D0096F780 /* Publishers+.swift */; };
 		716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD9295A242D0096F780 /* AnyPublisher+.swift */; };
 		716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DDB295A242D0096F780 /* UINavigationController+.swift */; };
@@ -114,6 +117,9 @@
 		7140F4892971F2C50054FA72 /* TestQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestQuestionViewController.swift; sourceTree = "<group>"; };
 		7140F48A2971F2C50054FA72 /* TestQuestionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestQuestionContext.swift; sourceTree = "<group>"; };
 		7140F48B2971F2C50054FA72 /* TestQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestQuestionViewModel.swift; sourceTree = "<group>"; };
+		7140F4932972C5BC0054FA72 /* TestQuestionTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestQuestionTopView.swift; sourceTree = "<group>"; };
+		7140F4942972C5BD0054FA72 /* TestQuestionTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestQuestionTopViewModel.swift; sourceTree = "<group>"; };
+		7140F4992972CDF50054FA72 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		716B6DD8295A242D0096F780 /* Publishers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+.swift"; sourceTree = "<group>"; };
 		716B6DD9295A242D0096F780 /* AnyPublisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+.swift"; sourceTree = "<group>"; };
 		716B6DDB295A242D0096F780 /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -269,12 +275,38 @@
 		7140F4872971F2BB0054FA72 /* TestQuestion */ = {
 			isa = PBXGroup;
 			children = (
+				7140F4922972C5960054FA72 /* Views */,
 				7140F4882971F2C50054FA72 /* TestQuestionRouter.swift */,
 				7140F4892971F2C50054FA72 /* TestQuestionViewController.swift */,
 				7140F48A2971F2C50054FA72 /* TestQuestionContext.swift */,
 				7140F48B2971F2C50054FA72 /* TestQuestionViewModel.swift */,
 			);
 			path = TestQuestion;
+			sourceTree = "<group>";
+		};
+		7140F4922972C5960054FA72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4932972C5BC0054FA72 /* TestQuestionTopView.swift */,
+				7140F4942972C5BD0054FA72 /* TestQuestionTopViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7140F4972972CDE40054FA72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4982972CDEA0054FA72 /* GradientView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7140F4982972CDEA0054FA72 /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4992972CDF50054FA72 /* GradientView.swift */,
+			);
+			path = GradientView;
 			sourceTree = "<group>";
 		};
 		716B6DD2295A23F00096F780 /* Resources */ = {
@@ -309,6 +341,7 @@
 		716B6DD5295A24050096F780 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7140F4972972CDE40054FA72 /* Views */,
 				37ED27242971DD470065FCFA /* Ink */,
 				716B6E3F295A24570096F780 /* Storage */,
 				716B6E38295A24500096F780 /* ErrorHandling */,
@@ -699,6 +732,8 @@
 				7140F4852971F2530054FA72 /* TestListContext.swift in Sources */,
 				7140F47B2971E7EE0054FA72 /* LoginUserRequestModel.swift in Sources */,
 				716B6E10295A242D0096F780 /* UICollectionView+.swift in Sources */,
+				7140F4962972C5BD0054FA72 /* TestQuestionTopViewModel.swift in Sources */,
+				7140F49A2972CDF50054FA72 /* GradientView.swift in Sources */,
 				716B6E3D295A24500096F780 /* AlertActionViewModel.swift in Sources */,
 				716B6E0F295A242D0096F780 /* UIButton+.swift in Sources */,
 				716B6E34295A24460096F780 /* APIRequest.swift in Sources */,
@@ -708,6 +743,7 @@
 				716B6E27295A242D0096F780 /* Optional+.swift in Sources */,
 				716B6E02295A242D0096F780 /* Publishers+.swift in Sources */,
 				716B6E26295A242D0096F780 /* Double+.swift in Sources */,
+				7140F4952972C5BD0054FA72 /* TestQuestionTopView.swift in Sources */,
 				7140F4762971E6200054FA72 /* UserServicing.swift in Sources */,
 				7140F4652971D2520054FA72 /* LoginViewController.swift in Sources */,
 				7140F4742971E61C0054FA72 /* UserService.swift in Sources */,
@@ -721,7 +757,6 @@
 				37ED27282971DD950065FCFA /* StrokeManager.swift in Sources */,
 				716B6E36295A24460096F780 /* NetworkConstants.swift in Sources */,
 				7140F48E2971F2C50054FA72 /* TestQuestionContext.swift in Sources */,
-				716B6E49295A24680096F780 /* GesturePublisher.swift in Sources */,
 				716B6E28295A242D0096F780 /* Date+.swift in Sources */,
 				716B6E23295A242D0096F780 /* TimeInterval+.swift in Sources */,
 				716B6E14295A242D0096F780 /* UIControl+.swift in Sources */,
@@ -896,7 +931,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FB3F6BT9Z5;
+				DEVELOPMENT_TEAM = D2X79FY398;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = spelang/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -928,7 +963,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FB3F6BT9Z5;
+				DEVELOPMENT_TEAM = D2X79FY398;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = spelang/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

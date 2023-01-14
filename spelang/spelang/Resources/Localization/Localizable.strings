@@ -12,3 +12,8 @@
 "login_first_text_field_placeholder" = "Username";
 "login_second_text_field_placeholder" = "PIN";
 "login_submit_button_title" = "Login";
+
+// MARK: - Canvas
+"canvas_clear_button_title" = "ERASE ALL";
+"canvas_done_button_title" = "DONE";
+"canvas_skip_button_title" = "SKIP";
