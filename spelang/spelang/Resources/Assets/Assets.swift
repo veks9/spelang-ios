@@ -12,6 +12,7 @@ import UIKit
 enum Assets: String {
 
     case mainBackground
+    case darkBackground
     
     var image: UIImage? {
         return UIImage(named: rawValue)

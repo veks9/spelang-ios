@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		37ED27262971DD6A0065FCFA /* RecognizedInk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED27252971DD6A0065FCFA /* RecognizedInk.swift */; };
 		37ED27282971DD950065FCFA /* StrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED27272971DD950065FCFA /* StrokeManager.swift */; };
+		37FF92752973255D00FED2EE /* TestResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92712973255D00FED2EE /* TestResultRouter.swift */; };
+		37FF92762973255D00FED2EE /* TestResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92722973255D00FED2EE /* TestResultViewController.swift */; };
+		37FF92772973255D00FED2EE /* TestResultContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92732973255D00FED2EE /* TestResultContext.swift */; };
+		37FF92782973255D00FED2EE /* TestResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92742973255D00FED2EE /* TestResultViewModel.swift */; };
 		7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4602971D2520054FA72 /* LoginRouter.swift */; };
 		7140F4652971D2520054FA72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4612971D2520054FA72 /* LoginViewController.swift */; };
 		7140F4662971D2520054FA72 /* LoginContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4622971D2520054FA72 /* LoginContext.swift */; };
@@ -93,6 +97,10 @@
 /* Begin PBXFileReference section */
 		37ED27252971DD6A0065FCFA /* RecognizedInk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedInk.swift; sourceTree = "<group>"; };
 		37ED27272971DD950065FCFA /* StrokeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeManager.swift; sourceTree = "<group>"; };
+		37FF92712973255D00FED2EE /* TestResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultRouter.swift; sourceTree = "<group>"; };
+		37FF92722973255D00FED2EE /* TestResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultViewController.swift; sourceTree = "<group>"; };
+		37FF92732973255D00FED2EE /* TestResultContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultContext.swift; sourceTree = "<group>"; };
+		37FF92742973255D00FED2EE /* TestResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultViewModel.swift; sourceTree = "<group>"; };
 		5237145637476E416F07BEB0 /* Pods_spelang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spelang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7140F4602971D2520054FA72 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		7140F4612971D2520054FA72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +207,17 @@
 			path = Ink;
 			sourceTree = "<group>";
 		};
+		37FF927A297325D600FED2EE /* TestResult */ = {
+			isa = PBXGroup;
+			children = (
+				37FF92712973255D00FED2EE /* TestResultRouter.swift */,
+				37FF92722973255D00FED2EE /* TestResultViewController.swift */,
+				37FF92732973255D00FED2EE /* TestResultContext.swift */,
+				37FF92742973255D00FED2EE /* TestResultViewModel.swift */,
+			);
+			path = TestResult;
+			sourceTree = "<group>";
+		};
 		4967B0B99924CD2864E84AA8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +318,7 @@
 		716B6DD4295A24000096F780 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				37FF927A297325D600FED2EE /* TestResult */,
 				7140F4872971F2BB0054FA72 /* TestQuestion */,
 				7140F47E2971F2480054FA72 /* TestList */,
 				7140F45F2971D23F0054FA72 /* Login */,
@@ -678,9 +698,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37FF92782973255D00FED2EE /* TestResultViewModel.swift in Sources */,
 				7140F48C2971F2C50054FA72 /* TestQuestionRouter.swift in Sources */,
 				716B6E0A295A242D0096F780 /* UIView+.swift in Sources */,
 				716B6E35295A24460096F780 /* AuthenticationType.swift in Sources */,
+				37FF92762973255D00FED2EE /* TestResultViewController.swift in Sources */,
 				716B6E52295A24CD0096F780 /* Assets.swift in Sources */,
 				716B6E1F295A242D0096F780 /* Array+.swift in Sources */,
 				716B6E44295A24570096F780 /* UserDefaultsStoring.swift in Sources */,
@@ -699,6 +721,7 @@
 				7140F4852971F2530054FA72 /* TestListContext.swift in Sources */,
 				7140F47B2971E7EE0054FA72 /* LoginUserRequestModel.swift in Sources */,
 				716B6E10295A242D0096F780 /* UICollectionView+.swift in Sources */,
+				37FF92772973255D00FED2EE /* TestResultContext.swift in Sources */,
 				716B6E3D295A24500096F780 /* AlertActionViewModel.swift in Sources */,
 				716B6E0F295A242D0096F780 /* UIButton+.swift in Sources */,
 				716B6E34295A24460096F780 /* APIRequest.swift in Sources */,
@@ -721,13 +744,13 @@
 				37ED27282971DD950065FCFA /* StrokeManager.swift in Sources */,
 				716B6E36295A24460096F780 /* NetworkConstants.swift in Sources */,
 				7140F48E2971F2C50054FA72 /* TestQuestionContext.swift in Sources */,
-				716B6E49295A24680096F780 /* GesturePublisher.swift in Sources */,
 				716B6E28295A242D0096F780 /* Date+.swift in Sources */,
 				716B6E23295A242D0096F780 /* TimeInterval+.swift in Sources */,
 				716B6E14295A242D0096F780 /* UIControl+.swift in Sources */,
 				716B6E22295A242D0096F780 /* URL+.swift in Sources */,
 				7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */,
 				716B6E32295A24460096F780 /* APIClient.swift in Sources */,
+				37FF92752973255D00FED2EE /* TestResultRouter.swift in Sources */,
 				7140F4662971D2520054FA72 /* LoginContext.swift in Sources */,
 				716B6E09295A242D0096F780 /* UIEdgeInsets+.swift in Sources */,
 				716B6E17295A242D0096F780 /* UIColor+.swift in Sources */,

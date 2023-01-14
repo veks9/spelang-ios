@@ -22,14 +22,20 @@ final class LoginRouter: LoginRouting {
     weak var delegate: LoginRouterDelegate?
     
     func navigateToTestList() {
-        let router = TestListRouter()
-        let context = TestListContext()
-        let viewModel = TestListViewModel(router: router)
-        let viewController = TestListViewController(viewModel: viewModel)
+        //        TODO: uncomment the below lines when done with TestResultViewController
+        //        let router = TestListRouter()
+        //        let context = TestListContext()
+        //        let viewModel = TestListViewModel(router: router)
+        //        let viewController = TestListViewController(viewModel: viewModel)
+        //
+        //        router.viewController = viewController
+        //        router.delegate = viewController
         
-        router.viewController = viewController
-        router.delegate = viewController
         
+        let router = TestResultRouter()
+        let context = TestResultContext()
+        let viewModel = TestResultViewModel(context: context, router: router)
+        let viewController = TestResultViewController(viewModel: viewModel)
         self.viewController?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

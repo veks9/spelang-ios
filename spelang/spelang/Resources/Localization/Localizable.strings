@@ -12,3 +12,8 @@
 "login_first_text_field_placeholder" = "Username";
 "login_second_text_field_placeholder" = "PIN";
 "login_submit_button_title" = "Login";
+
+// MARK: - TestResult
+"test_result_button_title" = "Back to tests";
+"test_result_new_personal_best_title" = "Congratulations! Your personal best";
+"test_result_show_test_details_button_title" = "Show test details >";
