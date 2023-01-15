@@ -8,6 +8,7 @@
 import Foundation
 
 protocol TestQuestionViewModeling {
+    func skipButtonTapped()
 }
 
 final class TestQuestionViewModel: TestQuestionViewModeling {
@@ -21,5 +22,9 @@ final class TestQuestionViewModel: TestQuestionViewModeling {
     ) {
         self.context = context
         self.router = router
+    }
+    
+    func skipButtonTapped() {
+        router.navigateToTestResult()
     }
 }

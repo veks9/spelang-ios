@@ -35,9 +35,17 @@ final class TestListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         addSubviews()
         setConstraints()
         observe()
+    }
+    
+    private func setupView() {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = true;
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     }
     
     private func addSubviews() {

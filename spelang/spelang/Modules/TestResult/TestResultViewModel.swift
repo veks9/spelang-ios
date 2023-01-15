@@ -9,6 +9,7 @@ import Foundation
 
 protocol TestResultViewModeling {
     func showTestDetailsButtonTapped()
+    func backToTestListButtonTapped()
 }
 
 final class TestResultViewModel: TestResultViewModeling {
@@ -26,5 +27,9 @@ final class TestResultViewModel: TestResultViewModeling {
     
     func showTestDetailsButtonTapped() {
         
+    }
+    
+    func backToTestListButtonTapped() {
+        router.navigateToTestList()
     }
 }

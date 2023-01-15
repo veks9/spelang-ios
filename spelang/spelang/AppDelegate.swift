@@ -28,10 +28,21 @@ private extension AppDelegate {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     
+//    func createRootViewController() -> UIViewController {
+//        let router = LoginRouter()
+//        let viewModel = LoginViewModel(router: router)
+//        let viewController = LoginViewController(viewModel: viewModel)
+//
+//        router.viewController = viewController
+//        router.delegate = viewController
+//
+//        return viewController
+//    }
+    
     func createRootViewController() -> UIViewController {
-        let router = LoginRouter()
-        let viewModel = LoginViewModel(router: router)
-        let viewController = LoginViewController(viewModel: viewModel)
+        let router = TestQuestionRouter()
+        let viewModel = TestQuestionViewModel(context: TestQuestionContext(), router: router)
+        let viewController = TestQuestionViewController(viewModel: viewModel)
         
         router.viewController = viewController
         router.delegate = viewController

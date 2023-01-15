@@ -55,21 +55,29 @@ final class TestResultViewController: UIViewController {
         return label
     }()
     
+    private lazy var leaderboardPositionLabel: UILabel = {
+        let label = UILabel()
+        label.set(textColor: .white, font: .systemFont(ofSize: 26, weight: .semibold))
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     private lazy var showTestDetailsButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.set(textColor: .white, font: .systemFont(ofSize: 26, weight: .semibold))
-        button.setTitle("test_result_show_test_details_button_title", for: .normal)
+        button.setTitle("test_result_show_test_details_button_title".localized(), for: .normal)
         button.titleLabel?.textAlignment = .center
         
         return button
     }()
     
-    private lazy var submitButton: UIButton = {
+    private lazy var backToTestListButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("test_result_button_title".localized(), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
-        button.tintColor = .white
-        button.backgroundColor = .black
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.tintColor = .black
+        button.backgroundColor = .white
         button.layer.cornerRadius = 15
     
         return button
@@ -90,9 +98,17 @@ final class TestResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
         addSubviews()
         setConstraints()
         observe()
+    }
+    
+    private func setupView() {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = true;
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     }
     
     private func addSubviews() {
@@ -101,8 +117,9 @@ final class TestResultViewController: UIViewController {
         containerView.addSubview(blurEffectView)
         containerView.addSubview(newPersonalBestLabel)
         containerView.addSubview(scoreLabel)
+        containerView.addSubview(leaderboardPositionLabel)
         containerView.addSubview(showTestDetailsButton)
-        containerView.addSubview(submitButton)
+        view.addSubview(backToTestListButton)
     }
     
     private func setConstraints() {
@@ -112,14 +129,61 @@ final class TestResultViewController: UIViewController {
         
         containerView.snp.remakeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(505)
+            $0.leading.trailing.equalToSuperview().inset(165)
+            $0.height.equalTo(420)
         }
         
         blurEffectView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        newPersonalBestLabel.snp.remakeConstraints {
+            $0.top.equalToSuperview().offset(75)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        scoreLabel.snp.remakeConstraints {
+            $0.top.equalTo(newPersonalBestLabel.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(150)
+        }
+        
+        scoreLabel.snp.remakeConstraints {
+            $0.top.equalTo(newPersonalBestLabel.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(120)
+        }
+        
+        leaderboardPositionLabel.snp.remakeConstraints {
+            $0.top.equalTo(scoreLabel.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(95)
+        }
+        
+        showTestDetailsButton.snp.remakeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(95)
+            $0.bottom.equalToSuperview().offset(-40)
+        }
+        
+        backToTestListButton.snp.remakeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(165)
+            $0.bottom.equalToSuperview().offset(-75)
+            $0.height.equalTo(50)
+        }
     }
     
     private func observe() {
+        backToTestListButton.onTap { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.backToTestListButtonTapped()
+        }
+    }
+}
+
+// MARK: - Public methods
+
+extension TestResultViewController {
+    func updateUI(with viewModel: TestResultViewModeling) {
+        self.viewModel = viewModel
+        // TODO: remove mocked data when connected to API
+        self.scoreLabel.text = "8/10"
+        self.leaderboardPositionLabel.text = "5th on leaderboard"
     }
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-
 import MLKit
 
 /// Protocol used by the `StrokeManager` to send requests back to the `ViewController` to update the
@@ -15,8 +14,6 @@ import MLKit
 protocol StrokeManagerDelegate: AnyObject {
     /** Clears any temporary ink managed by the caller. */
     func clearInk()
-    /** Redraws the ink and recognition results. */
-    func redraw()
     /** Display the given message to the user. */
     func displayMessage(message: String)
 }
@@ -53,7 +50,7 @@ class StrokeManager {
     private var recognizer: DigitalInkRecognizer! = nil
     
     /** The view that handles UI stuff. */
-    private weak var delegate: StrokeManagerDelegate?
+    weak var delegate: StrokeManagerDelegate?
     
     /** Properties to track and manage the selected language and recognition model. */
     private var model: DigitalInkRecognitionModel?
@@ -63,8 +60,7 @@ class StrokeManager {
      * Initialization of internal variables as well as creating the model manager and setting up
      * observers of the recognition model downloading status.
      */
-    init(delegate: StrokeManagerDelegate) {
-        self.delegate = delegate
+    init() {
         modelManager = ModelManager.modelManager()
         recognizedInks = []
         
@@ -174,9 +170,7 @@ class StrokeManager {
         let ink = Ink.init(strokes: strokes)
         let recognizedInk = RecognizedInk.init(ink: ink)
         recognizedInks.append(recognizedInk)
-        // Clear the currently being drawn ink, and display the ink from `recognizedInks` (which results
-        // in it changing color).
-        delegate?.redraw()
+        // Clear the currently being drawn ink
         delegate?.clearInk()
         strokes = []
         // Start the recognizer. Callback function will store the recognized text and tell the
@@ -197,7 +191,6 @@ class StrokeManager {
                     recognizedInk.text = "error"
                     self.delegate?.displayMessage(message: "Recognition error " + String(describing: error))
                 }
-                self.delegate?.redraw()
             })
     }
     
