@@ -14,6 +14,6 @@ struct TestQuestion {
     
     var isAnswerCorrect: Bool {
         guard let answer = answer else { return false }
-        return translation == answer
+        return translation.lowercased() == answer.lowercased()
     }
 }

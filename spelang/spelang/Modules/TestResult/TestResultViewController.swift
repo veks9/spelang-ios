@@ -175,6 +175,7 @@ final class TestResultViewController: UIViewController {
         setConstraints()
         observe()
         subscribeToCellViewModels()
+        viewModel.viewDidLoad()
     }
     
     private func setupView() {
@@ -299,6 +300,13 @@ final class TestResultViewController: UIViewController {
     }
     
     private func observe() {
+        viewModel.updateUI
+            .sink(receiveValue: { [weak self] model in
+                guard let self = self else { return }
+                self.updateUI(with: model)
+            })
+            .store(in: &cancellables)
+        
         backToTestListButton.onTap { [weak self] in
             guard let self = self else { return }
             self.viewModel.backToTestListButtonTapped()
@@ -308,6 +316,14 @@ final class TestResultViewController: UIViewController {
             guard let self = self else { return }
             self.animateShowTestResultDetails()
         }
+    }
+    
+    private func updateUI(with model: TestResultModel) {
+        testCategoryLabel.text = model.categoryName
+        scoreLabel.text = model.scoreFormatted
+        // TODO: - format this, when it is first has to be 1st and so on
+        leaderboardPositionLabel.text = "\(model.leaderboardPosition)th on leaderboard"
+        testResultDetailsView.updateUI(viewModel: TestResultDetailsViewModel(dataSource: TestResultDetailsDataSource()))
     }
     
     private func animateShowTestResultDetails() {
@@ -329,15 +345,6 @@ final class TestResultViewController: UIViewController {
 // MARK: - Public methods
 
 extension TestResultViewController {
-    func updateUI(with viewModel: TestResultViewModeling) {
-        self.viewModel = viewModel
-        // TODO: remove mocked data when connected to API
-        testCategoryLabel.text = "Animals"
-        scoreLabel.text = "8/10"
-        leaderboardPositionLabel.text = "5th on leaderboard"
-        testResultDetailsView.updateUI(viewModel: TestResultDetailsViewModel(dataSource: TestResultDetailsDataSource()))
-    }
-    
     func subscribeToCellViewModels() {
         testResultDetailsView.viewModel?.$closeTestResultDetailsButtonRelay
             .sink { [weak self] value in

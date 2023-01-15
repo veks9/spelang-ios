@@ -53,11 +53,12 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
     }
     
     func processAnswer(answer: String?) {
+        questions[currentIndex].answer = answer ?? nil
         if currentIndex == questions.count - 1 {
             // service send to backend
             // router Navigate to
+            router.navigateToTestResult(questions: questions, categoryName: context.categoryName)
         } else {
-            questions[currentIndex].answer = answer ?? nil
             nextQuestion()
         }
     }

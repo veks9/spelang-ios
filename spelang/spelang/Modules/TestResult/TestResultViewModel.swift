@@ -6,16 +6,22 @@
 //
 
 import Foundation
+import Combine
 
 protocol TestResultViewModeling {
+    var updateUI: AnyPublisher<TestResultModel, Never> { get }
+    
     func showTestDetailsButtonTapped()
     func backToTestListButtonTapped()
+    func viewDidLoad()
 }
 
-final class TestResultViewModel: TestResultViewModeling {
+final class TestResultViewModel {
 
     private let router: TestResultRouting
     private let context: TestResultContext
+    
+    private let updateUISubject: PassthroughSubject<TestResultModel, Never> = .init()
     
     init(
         context: TestResultContext,
@@ -24,6 +30,14 @@ final class TestResultViewModel: TestResultViewModeling {
         self.context = context
         self.router = router
     }
+}
+
+// MARK: - TestResultViewModeling
+
+extension TestResultViewModel: TestResultViewModeling {
+    var updateUI: AnyPublisher<TestResultModel, Never> {
+        updateUISubject.eraseToAnyPublisher()
+    }
     
     func showTestDetailsButtonTapped() {
         
@@ -31,5 +45,16 @@ final class TestResultViewModel: TestResultViewModeling {
     
     func backToTestListButtonTapped() {
         router.navigateToTestList()
+    }
+    
+    func viewDidLoad() {
+        let testResultModel = TestResultModel(
+            correctAnswers: context.questions.filter { $0.isAnswerCorrect }.count,
+            numberOfQuestions: context.questions.count,
+            // TODO: - get this from API
+            leaderboardPosition: 5,
+            categoryName: context.categoryName
+        )
+        updateUISubject.send(testResultModel)
     }
 }
