@@ -11,7 +11,6 @@ import Combine
 protocol TestResultViewModeling {
     var updateUI: AnyPublisher<TestResultModel, Never> { get }
     
-    func showTestDetailsButtonTapped()
     func backToTestListButtonTapped()
     func viewDidLoad()
 }
@@ -37,10 +36,6 @@ final class TestResultViewModel {
 extension TestResultViewModel: TestResultViewModeling {
     var updateUI: AnyPublisher<TestResultModel, Never> {
         updateUISubject.eraseToAnyPublisher()
-    }
-    
-    func showTestDetailsButtonTapped() {
-        
     }
     
     func backToTestListButtonTapped() {

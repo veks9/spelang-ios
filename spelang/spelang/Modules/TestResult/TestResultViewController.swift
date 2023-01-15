@@ -174,8 +174,8 @@ final class TestResultViewController: UIViewController {
         addSubviews()
         setConstraints()
         observe()
-        subscribeToCellViewModels()
         viewModel.viewDidLoad()
+        subscribeToCellViewModels()
     }
     
     private func setupView() {
@@ -321,8 +321,7 @@ final class TestResultViewController: UIViewController {
     private func updateUI(with model: TestResultModel) {
         testCategoryLabel.text = model.categoryName
         scoreLabel.text = model.scoreFormatted
-        // TODO: - format this, when it is first has to be 1st and so on
-        leaderboardPositionLabel.text = "\(model.leaderboardPosition)th on leaderboard"
+        leaderboardPositionLabel.text = "\(model.leaderboardPosition.ordinal) on leaderboard"
         testResultDetailsView.updateUI(viewModel: TestResultDetailsViewModel(dataSource: TestResultDetailsDataSource()))
     }
     
