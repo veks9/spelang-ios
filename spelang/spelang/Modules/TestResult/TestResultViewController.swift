@@ -31,6 +31,18 @@ final class TestResultViewController: UIViewController {
         return view
     }()
     
+    private lazy var seeLeaderboardButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.setTitle("test_result_see_leaderboard_button_title".localized(), for: .normal)
+        button.titleLabel?.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .semibold))
+        button.backgroundColor = .clear
+        
+        return button
+    }()
+    
+    
+    
     private lazy var testCategoryContainerView: GradientView = {
         let view = GradientView(
             colors: [UIColor.gradientBlue.cgColor, UIColor.gradientGreen.cgColor],
@@ -65,6 +77,13 @@ final class TestResultViewController: UIViewController {
         blurEffectView.alpha = 0.7
         
         return blurEffectView
+    }()
+    
+    private lazy var testResultContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        
+        return view
     }()
     
     private lazy var newPersonalBestLabel: UILabel = {
@@ -170,13 +189,15 @@ final class TestResultViewController: UIViewController {
         view.addSubview(testResultDetailsView)
         view.addSubview(testCategoryContainerView)
         testCategoryContainerView.addSubview(testCategoryLabel)
+        view.addSubview(seeLeaderboardButton)
         view.addSubview(testResultContainerView)
         testResultContainerView.addSubview(blurEffectView)
-        testResultContainerView.addSubview(newPersonalBestLabel)
-        testResultContainerView.addSubview(scoreLabel)
-        testResultContainerView.addSubview(leaderboardPositionLabel)
-        testResultContainerView.addSubview(showTestDetailsContainerView)
-        testResultContainerView.addSubview(showTestDetailsButton)
+        testResultContainerView.addSubview(testResultContentView)
+        testResultContentView.addSubview(newPersonalBestLabel)
+        testResultContentView.addSubview(scoreLabel)
+        testResultContentView.addSubview(leaderboardPositionLabel)
+        testResultContentView.addSubview(showTestDetailsContainerView)
+        testResultContentView.addSubview(showTestDetailsButton)
         showTestDetailsContainerView.addSubview(showTestDetailsLabel)
         showTestDetailsContainerView.addSubview(showMoreImageView)
         view.addSubview(backToTestListButton)
@@ -185,12 +206,6 @@ final class TestResultViewController: UIViewController {
     private func setConstraints() {
         backgroundImageView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
-        }
-        
-        testResultDetailsView.snp.remakeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(100)
-            $0.center.equalToSuperview()
-            $0.height.equalTo(600)
         }
         
         testCategoryContainerView.snp.remakeConstraints {
@@ -205,6 +220,18 @@ final class TestResultViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(10)
         }
         
+        seeLeaderboardButton.snp.remakeConstraints {
+            $0.top.equalTo(testCategoryContainerView.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(45)
+        }
+        
+        testResultDetailsView.snp.remakeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(100)
+            $0.top.equalTo(seeLeaderboardButton.snp.bottom).offset(50)
+            $0.bottom.equalTo(backToTestListButton.snp.top).offset(-50)
+        }
+        
         testResultContainerView.snp.remakeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(165)
@@ -212,6 +239,10 @@ final class TestResultViewController: UIViewController {
         }
         
         blurEffectView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        testResultContentView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
         }
         
@@ -280,9 +311,10 @@ final class TestResultViewController: UIViewController {
     }
     
     private func animateShowTestResultDetails() {
-        self.remakeConstraintsToShowTestResultDetailsView()
-
-        UIView.animate(withDuration: 0.2) {
+        remakeConstraintsToShowTestResultDetailsView()
+        testResultContentView.isHidden = true
+        
+        UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         } completion: { [weak self] _ in
             guard let self = self else { return }
@@ -312,14 +344,15 @@ extension TestResultViewController {
                 guard let self = self else { return }
                 switch value {
                 case true:
+                    self.testResultContainerView.isHidden = false
                     self.setConstraints()
-                    UIView.animate(withDuration: 0.2) {
+                    self.testResultDetailsView.isHidden = true
+                    UIView.animate(withDuration: 0.3) {
                         self.view.layoutIfNeeded()
                     } completion: { [weak self] _ in
                         guard let self = self else { return }
                         UIView.animate(withDuration: 0.3) {
-                            self.testResultContainerView.isHidden = false
-                            self.testResultDetailsView.isHidden = true
+                            self.testResultContentView.isHidden = false
                         }
                     }
                 default:
