@@ -16,6 +16,8 @@ protocol StrokeManagerDelegate: AnyObject {
     func clearInk()
     /** Display the given message to the user. */
     func displayMessage(message: String)
+    /** sends recognized word that ML KIT recognized from canvas*/
+    func didRecognizeCanvasWord(_: String?)
 }
 
 /// The `StrokeManager` object is responsible for storing the ink and recognition results, and
@@ -183,6 +185,7 @@ class StrokeManager {
                 if let result = result, let candidate = result.candidates.first {
                     recognizedInk.text = candidate.text
                     var message = "Recognized: \(candidate.text)"
+                    self.delegate?.didRecognizeCanvasWord(candidate.text)
                     if candidate.score != nil {
                         message += " score \(candidate.score!.floatValue)"
                     }
@@ -190,6 +193,7 @@ class StrokeManager {
                 } else {
                     recognizedInk.text = "error"
                     self.delegate?.displayMessage(message: "Recognition error " + String(describing: error))
+                    self.delegate?.didRecognizeCanvasWord(nil)
                 }
             })
     }

@@ -40,7 +40,6 @@ final class TestQuestionTopView: UIView {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
         label.textAlignment = .center
-        label.text = "macka"
         
         return label
     }()
@@ -60,7 +59,6 @@ final class TestQuestionTopView: UIView {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
         label.textAlignment = .center
-        label.text = "Animals"
         
         return label
     }()
@@ -122,5 +120,7 @@ final class TestQuestionTopView: UIView {
 extension TestQuestionTopView {
     func updateUI(viewModel: TestQuestionTopViewModel) {
         self.viewModel = viewModel
+        wordLabel.text = viewModel.word
+        categoryLabel.text = viewModel.categoryName
     }
 }

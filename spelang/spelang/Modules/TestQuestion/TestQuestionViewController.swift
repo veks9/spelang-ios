@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 import MLKit
+import Combine
 
 final class TestQuestionViewController: UIViewController {
     
@@ -22,6 +23,8 @@ final class TestQuestionViewController: UIViewController {
     
     /** Coordinates of the previous touch point as the user is drawing ink. */
     private var lastPoint: CGPoint?
+    
+    private var cancellables: Set<AnyCancellable> = .init()
     
     /**
      * Object that takes care of the logic of saving the ink, sending ink to the recognizer after a
@@ -106,6 +109,8 @@ final class TestQuestionViewController: UIViewController {
         addSubviews()
         setConstraints()
         observe()
+        
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,8 +128,8 @@ final class TestQuestionViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(topView)
         view.addSubview(drawnImage)
+        view.addSubview(topView)
         view.addSubview(clearButton)
         view.addSubview(skipButton)
         view.addSubview(doneButton)
@@ -158,6 +163,13 @@ final class TestQuestionViewController: UIViewController {
     }
     
     private func observe() {
+        viewModel.updateUI
+            .sink(receiveValue: { [weak self] topViewModel in
+                guard let self = self else { return }
+                self.topView.updateUI(viewModel: topViewModel)
+            })
+            .store(in: &cancellables)
+        
         clearButton.onTap { [weak self] in
             guard let self = self else { return }
             self.clearInk()
@@ -166,6 +178,11 @@ final class TestQuestionViewController: UIViewController {
         doneButton.onTap { [weak self] in
             guard let self = self else { return }
             self.strokeManager.recognizeInk()
+        }
+        
+        skipButton.onTap { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.skipButtonTapped()
         }
     }
     
@@ -265,7 +282,10 @@ extension TestQuestionViewController: StrokeManagerDelegate {
         strokeManager.clear()
     }
 
-    func displayMessage(message: String) {
-        print("🔴🔴🔴🔴\(message)🔴🔴🔴🔴")
+    func displayMessage(message: String) {}
+    
+    func didRecognizeCanvasWord(_ canvasWord: String?) {
+        print("🟢🟢🟢🟢\(canvasWord)🟢🟢🟢🟢")
+        viewModel.processAnswer(answer: canvasWord)
     }
 }
