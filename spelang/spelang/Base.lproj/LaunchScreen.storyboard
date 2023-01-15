@@ -17,17 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="7nC-jh-hHb">
-                                <rect key="frame" x="0.0" y="24" width="800" height="1106"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-dl-I2H">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7nC-jh-hHb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-30" id="JHg-Ua-cW7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7nC-jh-hHb" secondAttribute="trailing" id="ObM-qD-Uoe"/>
-                            <constraint firstItem="7nC-jh-hHb" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="Q2w-ch-Urn"/>
-                            <constraint firstItem="7nC-jh-hHb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wuz-nw-R86"/>
+                            <constraint firstItem="pzK-dl-I2H" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ju9-Yq-sAF"/>
+                            <constraint firstItem="pzK-dl-I2H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rOu-um-vs7"/>
                         </constraints>
                     </view>
                 </viewController>
