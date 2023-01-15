@@ -22,6 +22,26 @@ final class TestResultViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var testCategoryContainerView: GradientView = {
+        let view = GradientView(
+            colors: [UIColor.gradientBlue.cgColor, UIColor.gradientGreen.cgColor],
+            gradientDirection: .topBottom
+        )
+        view.layer.cornerRadius = 35
+        
+        return view
+    }()
+    
+    private lazy var testCategoryLabel: UILabel = {
+        let label = UILabel()
+        label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .bold))
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 40
@@ -113,6 +133,8 @@ final class TestResultViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(backgroundImageView)
+        view.addSubview(testCategoryContainerView)
+        testCategoryContainerView.addSubview(testCategoryLabel)
         view.addSubview(containerView)
         containerView.addSubview(blurEffectView)
         containerView.addSubview(newPersonalBestLabel)
@@ -125,6 +147,18 @@ final class TestResultViewController: UIViewController {
     private func setConstraints() {
         backgroundImageView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        testCategoryContainerView.snp.remakeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(400)
+            $0.height.equalTo(70)
+        }
+        
+        testCategoryLabel.snp.remakeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
         
         containerView.snp.remakeConstraints {
@@ -183,6 +217,7 @@ extension TestResultViewController {
     func updateUI(with viewModel: TestResultViewModeling) {
         self.viewModel = viewModel
         // TODO: remove mocked data when connected to API
+        self.testCategoryLabel.text = "Animals"
         self.scoreLabel.text = "8/10"
         self.leaderboardPositionLabel.text = "5th on leaderboard"
     }
