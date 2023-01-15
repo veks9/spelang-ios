@@ -322,7 +322,8 @@ final class TestResultViewController: UIViewController {
         testCategoryLabel.text = model.categoryName
         scoreLabel.text = model.scoreFormatted
         leaderboardPositionLabel.text = "\(model.leaderboardPosition.ordinal) on leaderboard"
-        testResultDetailsView.updateUI(viewModel: TestResultDetailsViewModel(dataSource: TestResultDetailsDataSource()))
+        let context = viewModel.context
+        testResultDetailsView.updateUI(viewModel: TestResultDetailsViewModel(dataSource: TestResultDetailsDataSource(from: context)))
     }
     
     private func animateShowTestResultDetails() {
