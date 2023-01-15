@@ -23,13 +23,11 @@ final class LoginRouter: LoginRouting {
     
     func navigateToTestList() {
         let router = TestListRouter()
-        let context = TestListContext()
         let viewModel = TestListViewModel(router: router)
         let viewController = TestListViewController(viewModel: viewModel)
         
         router.viewController = viewController
         router.delegate = viewController
-        
         self.viewController?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

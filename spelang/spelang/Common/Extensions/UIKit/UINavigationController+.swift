@@ -35,9 +35,14 @@ extension UINavigationController {
     }
     
     func pushViewControllers(with viewControllers: [UIViewController], animated: Bool = true) {
-        var newViewControllerss = Array(self.viewControllers)
-        newViewControllerss.append(contentsOf: viewControllers)
-        setViewControllers(newViewControllerss, animated: animated)
+        var newViewControllers = Array(self.viewControllers)
+        newViewControllers.append(contentsOf: viewControllers)
+        setViewControllers(newViewControllers, animated: animated)
+    }
+    
+    func replaceViewControllersStack(with viewControllers: [UIViewController], animated: Bool = true) {
+        let newViewControllers = Array(viewControllers)
+        setViewControllers(newViewControllers, animated: animated)
     }
 
     func updateNavigationBar(isTranslucent: Bool) {

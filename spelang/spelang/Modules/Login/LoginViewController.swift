@@ -75,7 +75,7 @@ final class LoginViewController: UIViewController {
     private lazy var submitButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("login_submit_button_title".localized(), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
         button.tintColor = .white
         button.backgroundColor = .black
         button.layer.cornerRadius = 15

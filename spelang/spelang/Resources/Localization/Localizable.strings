@@ -13,6 +13,17 @@
 "login_second_text_field_placeholder" = "PIN";
 "login_submit_button_title" = "Login";
 
+// MARK: - TestResult
+"test_result_see_leaderboard_button_title" = "See leaderboard >";
+"test_result_button_title" = "Back to tests";
+"test_result_new_personal_best_title" = "Congratulations! Your personal best";
+"test_result_show_test_details_button_title" = "Show test details";
+"test_result_hide_details_button_title" = "Hide";
+"test_result_details_label_title" = "Test result";
+"test_result_details_word_column_title" = "WORD";
+"test_result_details_answer_column_title" = "ANSWER";
+"test_result_details_correct_column_title" = "CORRECT";
+
 // MARK: - Canvas
 "canvas_clear_button_title" = "ERASE ALL";
 "canvas_done_button_title" = "DONE";
