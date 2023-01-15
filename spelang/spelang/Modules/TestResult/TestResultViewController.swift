@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import Combine
 
 final class TestResultViewController: UIViewController {
     
     private var viewModel: TestResultViewModeling
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Views
     
@@ -20,6 +22,13 @@ final class TestResultViewController: UIViewController {
         imageView.image = Assets.darkBackground.image
         
         return imageView
+    }()
+    
+    private lazy var testResultDetailsView: TestResultDetailsView = {
+        let view = TestResultDetailsView()
+        view.isHidden = true
+        
+        return view
     }()
     
     private lazy var testCategoryContainerView: GradientView = {
@@ -42,7 +51,7 @@ final class TestResultViewController: UIViewController {
         return label
     }()
     
-    private lazy var containerView: UIView = {
+    private lazy var testResultContainerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 40
         view.clipsToBounds = true
@@ -85,11 +94,35 @@ final class TestResultViewController: UIViewController {
     
     private lazy var showTestDetailsButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.set(textColor: .white, font: .systemFont(ofSize: 26, weight: .semibold))
-        button.setTitle("test_result_show_test_details_button_title".localized(), for: .normal)
-        button.titleLabel?.textAlignment = .center
+        button.backgroundColor = .clear
         
         return button
+    }()
+    
+    private lazy var showTestDetailsContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.isUserInteractionEnabled = false
+        
+        return view
+    }()
+    
+    private lazy var showTestDetailsLabel: UILabel = {
+        let label = UILabel()
+        label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .semibold))
+        label.text = "test_result_show_test_details_button_title".localized()
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private lazy var showMoreImageView: UIImageView = {
+        let view = UIImageView()
+        view.image = Assets.rightArrowhead.image?.withRenderingMode(.alwaysTemplate)
+        view.tintColor = .white
+        view.transform = view.transform.rotated(by: .pi / 2) // 90˚
+        
+        return view
     }()
     
     private lazy var backToTestListButton: UIButton = {
@@ -122,6 +155,7 @@ final class TestResultViewController: UIViewController {
         addSubviews()
         setConstraints()
         observe()
+        subscribeToCellViewModels()
     }
     
     private func setupView() {
@@ -133,20 +167,30 @@ final class TestResultViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(backgroundImageView)
+        view.addSubview(testResultDetailsView)
         view.addSubview(testCategoryContainerView)
         testCategoryContainerView.addSubview(testCategoryLabel)
-        view.addSubview(containerView)
-        containerView.addSubview(blurEffectView)
-        containerView.addSubview(newPersonalBestLabel)
-        containerView.addSubview(scoreLabel)
-        containerView.addSubview(leaderboardPositionLabel)
-        containerView.addSubview(showTestDetailsButton)
+        view.addSubview(testResultContainerView)
+        testResultContainerView.addSubview(blurEffectView)
+        testResultContainerView.addSubview(newPersonalBestLabel)
+        testResultContainerView.addSubview(scoreLabel)
+        testResultContainerView.addSubview(leaderboardPositionLabel)
+        testResultContainerView.addSubview(showTestDetailsContainerView)
+        testResultContainerView.addSubview(showTestDetailsButton)
+        showTestDetailsContainerView.addSubview(showTestDetailsLabel)
+        showTestDetailsContainerView.addSubview(showMoreImageView)
         view.addSubview(backToTestListButton)
     }
     
     private func setConstraints() {
         backgroundImageView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        testResultDetailsView.snp.remakeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(100)
+            $0.center.equalToSuperview()
+            $0.height.equalTo(600)
         }
         
         testCategoryContainerView.snp.remakeConstraints {
@@ -161,7 +205,7 @@ final class TestResultViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(10)
         }
         
-        containerView.snp.remakeConstraints {
+        testResultContainerView.snp.remakeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(165)
             $0.height.equalTo(420)
@@ -191,9 +235,23 @@ final class TestResultViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(95)
         }
         
-        showTestDetailsButton.snp.remakeConstraints {
+        showTestDetailsContainerView.snp.remakeConstraints {
             $0.leading.trailing.equalToSuperview().inset(95)
-            $0.bottom.equalToSuperview().offset(-40)
+            $0.bottom.equalToSuperview().offset(-20)
+        }
+        
+        showTestDetailsLabel.snp.remakeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+
+        showMoreImageView.snp.remakeConstraints {
+            $0.top.equalTo(showTestDetailsLabel.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        showTestDetailsButton.snp.remakeConstraints {
+            $0.edges.equalTo(showTestDetailsContainerView)
         }
         
         backToTestListButton.snp.remakeConstraints {
@@ -203,10 +261,35 @@ final class TestResultViewController: UIViewController {
         }
     }
     
+    private func remakeConstraintsToShowTestResultDetailsView() {
+        testResultContainerView.snp.remakeConstraints {
+            $0.edges.equalTo(testResultDetailsView)
+        }
+    }
+    
     private func observe() {
         backToTestListButton.onTap { [weak self] in
             guard let self = self else { return }
             self.viewModel.backToTestListButtonTapped()
+        }
+        
+        showTestDetailsButton.onTap { [weak self] in
+            guard let self = self else { return }
+            self.animateShowTestResultDetails()
+        }
+    }
+    
+    private func animateShowTestResultDetails() {
+        self.remakeConstraintsToShowTestResultDetailsView()
+
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        } completion: { [weak self] _ in
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3) {
+                self.testResultContainerView.isHidden = true
+                self.testResultDetailsView.isHidden = false
+            }
         }
     }
 }
@@ -217,8 +300,32 @@ extension TestResultViewController {
     func updateUI(with viewModel: TestResultViewModeling) {
         self.viewModel = viewModel
         // TODO: remove mocked data when connected to API
-        self.testCategoryLabel.text = "Animals"
-        self.scoreLabel.text = "8/10"
-        self.leaderboardPositionLabel.text = "5th on leaderboard"
+        testCategoryLabel.text = "Animals"
+        scoreLabel.text = "8/10"
+        leaderboardPositionLabel.text = "5th on leaderboard"
+        testResultDetailsView.updateUI(viewModel: TestResultDetailsViewModel(dataSource: TestResultDetailsDataSource()))
+    }
+    
+    func subscribeToCellViewModels() {
+        testResultDetailsView.viewModel?.$closeTestResultDetailsButtonRelay
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                switch value {
+                case true:
+                    self.setConstraints()
+                    UIView.animate(withDuration: 0.2) {
+                        self.view.layoutIfNeeded()
+                    } completion: { [weak self] _ in
+                        guard let self = self else { return }
+                        UIView.animate(withDuration: 0.3) {
+                            self.testResultContainerView.isHidden = false
+                            self.testResultDetailsView.isHidden = true
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+            .store(in: &cancellables)
     }
 }

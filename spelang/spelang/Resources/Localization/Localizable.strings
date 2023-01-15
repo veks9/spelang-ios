@@ -16,7 +16,8 @@
 // MARK: - TestResult
 "test_result_button_title" = "Back to tests";
 "test_result_new_personal_best_title" = "Congratulations! Your personal best";
-"test_result_show_test_details_button_title" = "Show test details >";
+"test_result_show_test_details_button_title" = "Show test details";
+"test_result_details_label_title" = "Test result";
 
 // MARK: - Canvas
 "canvas_clear_button_title" = "ERASE ALL";
