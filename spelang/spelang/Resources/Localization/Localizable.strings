@@ -31,3 +31,7 @@
 
 // MARK: - Leaderboard
 "leaderboard_title" = "Leaderboard";
+
+// MARK: - TestList
+"test_list_see_leaderboard_button_title" = "See leaderboards >";
+"test_list__title" = "Tests";

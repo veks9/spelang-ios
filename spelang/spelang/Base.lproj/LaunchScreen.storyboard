@@ -17,15 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-dl-I2H">
-                                <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="mainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-dl-I2H">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="pzK-dl-I2H" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ju9-Yq-sAF"/>
-                            <constraint firstItem="pzK-dl-I2H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rOu-um-vs7"/>
+                            <constraint firstAttribute="trailing" secondItem="pzK-dl-I2H" secondAttribute="trailing" id="Wep-wX-tNX"/>
+                            <constraint firstAttribute="bottom" secondItem="pzK-dl-I2H" secondAttribute="bottom" id="hMX-P2-PKM"/>
+                            <constraint firstItem="pzK-dl-I2H" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="hcd-vx-d62"/>
+                            <constraint firstItem="pzK-dl-I2H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yNv-2g-gbR"/>
                         </constraints>
                     </view>
                 </viewController>

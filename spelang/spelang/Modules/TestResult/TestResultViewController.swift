@@ -41,8 +41,6 @@ final class TestResultViewController: UIViewController {
         return button
     }()
     
-    
-    
     private lazy var testCategoryContainerView: GradientView = {
         let view = GradientView(
             colors: [UIColor.gradientBlue.cgColor, UIColor.gradientGreen.cgColor],

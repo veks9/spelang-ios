@@ -44,6 +44,14 @@ final class TestQuestionTopView: UIView {
         return label
     }()
     
+    private lazy var questionNumberLabel: UILabel = {
+        let label = UILabel()
+        label.set(textColor: .white, font: .systemFont(ofSize: 35, weight: .bold))
+        label.textAlignment = .right
+        
+        return label
+    }()
+    
     private lazy var categoryContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .appBackgroundNavyBlue
@@ -79,6 +87,7 @@ final class TestQuestionTopView: UIView {
         addSubview(containerView)
         containerView.addSubview(wordContainerView)
         wordContainerView.addSubview(wordLabel)
+        containerView.addSubview(questionNumberLabel)
         addSubview(categoryContainerView)
         categoryContainerView.addSubview(categoryLabel)
     }
@@ -98,6 +107,12 @@ final class TestQuestionTopView: UIView {
         wordLabel.snp.remakeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(10)
+        }
+        
+        questionNumberLabel.snp.remakeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(wordContainerView.snp.trailing).offset(20)
+            $0.trailing.equalToSuperview().offset(-43)
         }
         
         categoryContainerView.snp.remakeConstraints {
@@ -122,5 +137,6 @@ extension TestQuestionTopView {
         self.viewModel = viewModel
         wordLabel.text = viewModel.word
         categoryLabel.text = viewModel.categoryName
+        questionNumberLabel.text = viewModel.currentQuestionNumberFormatted
     }
 }

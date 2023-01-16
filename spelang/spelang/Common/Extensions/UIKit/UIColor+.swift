@@ -70,6 +70,12 @@ extension UIColor {
     
     /// #168CBF
     static let appLightBlue = UIColor(rgb: 0x168CBF)
+
+    /// #161D24
+    static let appDarkBlue = UIColor(rgb: 0x161D24)
+    
+    /// #5F666C
+    static let appGray = UIColor(rgb: 0x5F666C)
 }
 
 // MARK: - Light/Dark mode support
