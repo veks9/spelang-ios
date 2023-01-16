@@ -9,5 +9,7 @@ import Foundation
 import Combine
 
 final class TestLeaderboardService: TestLeaderboardServicing {
-    
+    func fetchTestLeaderboard(difficulty: String, category: String) -> AnyPublisher<[Model.TestLeaderboardPosition], Model.ErrorResponse> {
+        return APIClient.shared.performRequest(TestLeaderboardRequest(difficulty: difficulty, category: category)).eraseToAnyPublisher()
+    }
 }

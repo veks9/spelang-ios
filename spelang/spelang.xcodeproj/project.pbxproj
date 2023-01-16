@@ -28,6 +28,8 @@
 		37FF92A62975500200FED2EE /* TestLeaderboardServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92A52975500200FED2EE /* TestLeaderboardServicing.swift */; };
 		37FF92A82975503900FED2EE /* TestLeaderboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92A72975503900FED2EE /* TestLeaderboardService.swift */; };
 		37FF92AA2975562C00FED2EE /* TestLeaderboardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92A92975562C00FED2EE /* TestLeaderboardPosition.swift */; };
+		37FF92AE2975E46B00FED2EE /* TestLeaderboardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92AD2975E46B00FED2EE /* TestLeaderboardRequest.swift */; };
+		37FF92B02975E4AF00FED2EE /* TestLeaderboardRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF92AF2975E4AF00FED2EE /* TestLeaderboardRequestModel.swift */; };
 		7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4602971D2520054FA72 /* LoginRouter.swift */; };
 		7140F4652971D2520054FA72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4612971D2520054FA72 /* LoginViewController.swift */; };
 		7140F4662971D2520054FA72 /* LoginContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4622971D2520054FA72 /* LoginContext.swift */; };
@@ -138,6 +140,8 @@
 		37FF92A52975500200FED2EE /* TestLeaderboardServicing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboardServicing.swift; sourceTree = "<group>"; };
 		37FF92A72975503900FED2EE /* TestLeaderboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboardService.swift; sourceTree = "<group>"; };
 		37FF92A92975562C00FED2EE /* TestLeaderboardPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboardPosition.swift; sourceTree = "<group>"; };
+		37FF92AD2975E46B00FED2EE /* TestLeaderboardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboardRequest.swift; sourceTree = "<group>"; };
+		37FF92AF2975E4AF00FED2EE /* TestLeaderboardRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboardRequestModel.swift; sourceTree = "<group>"; };
 		5237145637476E416F07BEB0 /* Pods_spelang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spelang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7140F4602971D2520054FA72 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		7140F4612971D2520054FA72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -333,10 +337,19 @@
 		37FF92A429754DF200FED2EE /* TestLeaderboardService */ = {
 			isa = PBXGroup;
 			children = (
+				37FF92AC2975E41300FED2EE /* Requests */,
 				37FF92A52975500200FED2EE /* TestLeaderboardServicing.swift */,
 				37FF92A72975503900FED2EE /* TestLeaderboardService.swift */,
 			);
 			path = TestLeaderboardService;
+			sourceTree = "<group>";
+		};
+		37FF92AC2975E41300FED2EE /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				37FF92AD2975E46B00FED2EE /* TestLeaderboardRequest.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		4967B0B99924CD2864E84AA8 /* Pods */ = {
@@ -648,6 +661,7 @@
 				7140F47A2971E7EE0054FA72 /* LoginUserRequestModel.swift */,
 				7140F47C2971E8550054FA72 /* User.swift */,
 				37FF92A92975562C00FED2EE /* TestLeaderboardPosition.swift */,
+				37FF92AF2975E4AF00FED2EE /* TestLeaderboardRequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -869,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37FF92782973255D00FED2EE /* TestResultViewModel.swift in Sources */,
+				37FF92B02975E4AF00FED2EE /* TestLeaderboardRequestModel.swift in Sources */,
 				37FF92872974236600FED2EE /* TestQuestionResultCell.swift in Sources */,
 				7140F48C2971F2C50054FA72 /* TestQuestionRouter.swift in Sources */,
 				716B6E0A295A242D0096F780 /* UIView+.swift in Sources */,
@@ -905,6 +920,7 @@
 				716B6E34295A24460096F780 /* APIRequest.swift in Sources */,
 				716B6E1B295A242D0096F780 /* BinaryInteger+.swift in Sources */,
 				716B6E25295A242D0096F780 /* Formatter+.swift in Sources */,
+				37FF92AE2975E46B00FED2EE /* TestLeaderboardRequest.swift in Sources */,
 				716B6E0C295A242D0096F780 /* UIImageView+.swift in Sources */,
 				716B6E27295A242D0096F780 /* Optional+.swift in Sources */,
 				716B6E02295A242D0096F780 /* Publishers+.swift in Sources */,

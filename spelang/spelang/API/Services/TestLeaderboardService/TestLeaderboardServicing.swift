@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol TestLeaderboardServicing {
-    
+    func fetchTestLeaderboard(difficulty: String, category: String) -> AnyPublisher<[Model.TestLeaderboardPosition], Model.ErrorResponse>
 }
