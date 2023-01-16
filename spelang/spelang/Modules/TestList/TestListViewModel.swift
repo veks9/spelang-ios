@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TestListViewModeling {
-    func navigate()
+    func navigateToLeaderBoards()
 }
 
 final class TestListViewModel {
@@ -25,7 +25,7 @@ final class TestListViewModel {
 // MARK: - TestListViewModeling
 
 extension TestListViewModel: TestListViewModeling {
-    func navigate() {
-        router.navigateToTestQuestion()
+    func navigateToLeaderBoards() {
+        router.navigateToLeaderBoards()
     }
 }

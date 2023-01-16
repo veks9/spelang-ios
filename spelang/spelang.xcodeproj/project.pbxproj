@@ -43,6 +43,8 @@
 		7140F49A2972CDF50054FA72 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4992972CDF50054FA72 /* GradientView.swift */; };
 		7140F49D29745D610054FA72 /* TestQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F49C29745D610054FA72 /* TestQuestion.swift */; };
 		7140F49F297480A80054FA72 /* TestResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F49E297480A80054FA72 /* TestResultModel.swift */; };
+		7140F4A22974B06D0054FA72 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4A12974B06D0054FA72 /* TestCell.swift */; };
+		7140F4A42974B0B00054FA72 /* TestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */; };
 		716B6E02295A242D0096F780 /* Publishers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD8295A242D0096F780 /* Publishers+.swift */; };
 		716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD9295A242D0096F780 /* AnyPublisher+.swift */; };
 		716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DDB295A242D0096F780 /* UINavigationController+.swift */; };
@@ -142,6 +144,8 @@
 		7140F4992972CDF50054FA72 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		7140F49C29745D610054FA72 /* TestQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestQuestion.swift; sourceTree = "<group>"; };
 		7140F49E297480A80054FA72 /* TestResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultModel.swift; sourceTree = "<group>"; };
+		7140F4A12974B06D0054FA72 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
+		7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellViewModel.swift; sourceTree = "<group>"; };
 		716B6DD8295A242D0096F780 /* Publishers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+.swift"; sourceTree = "<group>"; };
 		716B6DD9295A242D0096F780 /* AnyPublisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+.swift"; sourceTree = "<group>"; };
 		716B6DDB295A242D0096F780 /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 		7140F47E2971F2480054FA72 /* TestList */ = {
 			isa = PBXGroup;
 			children = (
+				7140F4A02974B05E0054FA72 /* Cells */,
 				7140F47F2971F2530054FA72 /* TestListRouter.swift */,
 				7140F4802971F2530054FA72 /* TestListViewController.swift */,
 				7140F4812971F2530054FA72 /* TestListContext.swift */,
@@ -386,6 +391,15 @@
 				7140F49C29745D610054FA72 /* TestQuestion.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7140F4A02974B05E0054FA72 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4A12974B06D0054FA72 /* TestCell.swift */,
+				7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		716B6DD2295A23F00096F780 /* Resources */ = {
@@ -841,6 +855,7 @@
 				716B6E13295A242D0096F780 /* UITextField+.swift in Sources */,
 				716B6E20295A242D0096F780 /* String+.swift in Sources */,
 				7140F49D29745D610054FA72 /* TestQuestion.swift in Sources */,
+				7140F4A22974B06D0054FA72 /* TestCell.swift in Sources */,
 				716B6E29295A242D0096F780 /* String+Localization.swift in Sources */,
 				716B6E06295A242D0096F780 /* UIDevice+.swift in Sources */,
 				37FF9280297414C500FED2EE /* TestResultDetailsViewModel.swift in Sources */,
@@ -854,6 +869,7 @@
 				7140F4642971D2520054FA72 /* LoginRouter.swift in Sources */,
 				716B6E32295A24460096F780 /* APIClient.swift in Sources */,
 				37FF92752973255D00FED2EE /* TestResultRouter.swift in Sources */,
+				7140F4A42974B0B00054FA72 /* TestCellViewModel.swift in Sources */,
 				7140F4662971D2520054FA72 /* LoginContext.swift in Sources */,
 				716B6E09295A242D0096F780 /* UIEdgeInsets+.swift in Sources */,
 				716B6E17295A242D0096F780 /* UIColor+.swift in Sources */,

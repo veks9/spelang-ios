@@ -9,13 +9,23 @@ import Foundation
 
 final class TestQuestionTopViewModel {
     let categoryName: String
-    let word: String
+    var word: String
+    let numberOfQuestions: Int
+    var currentQuestionIndex: Int
     
     init(
         categoryName: String,
-        word: String
+        word: String,
+        numberOfQuestions: Int,
+        currentQuestionIndex: Int
     ) {
         self.categoryName = categoryName
         self.word = word
+        self.numberOfQuestions = numberOfQuestions
+        self.currentQuestionIndex = currentQuestionIndex
+    }
+    
+    var currentQuestionNumberFormatted: String {
+        "\(currentQuestionIndex + 1)/\(numberOfQuestions)"
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class TestListViewController: UIViewController {
     
@@ -14,11 +15,49 @@ final class TestListViewController: UIViewController {
     
     // MARK: - Views
     
-    private lazy var button: UIButton = {
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = Assets.darkBackground.image
+        
+        return imageView
+    }()
+    
+    private lazy var titleContainerView: GradientView = {
+        let view = GradientView(
+            colors: [UIColor.gradientBlue.cgColor, UIColor.gradientGreen.cgColor],
+            gradientDirection: .topBottom
+        )
+        view.layer.cornerRadius = 35
+        
+        return view
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .bold))
+        label.text = "".localized()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private lazy var seeLeaderboardButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .red
+        button.tintColor = .white
+        button.setTitle("test_list_see_leaderboard_button_title".localized(), for: .normal)
+        button.titleLabel?.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .semibold))
+        button.backgroundColor = .clear
         
         return button
+    }()
+    
+    private lazy var testsCollectionView: UICollectionView = {
+        let view = UICollectionView()
+        
+        return view
     }()
     
     // MARK: - Lifecycle
@@ -35,34 +74,58 @@ final class TestListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
         addSubviews()
         setConstraints()
         observe()
     }
     
-    private func setupView() {
-        self.navigationItem.leftBarButtonItem = nil;
-        self.navigationItem.hidesBackButton = true;
-        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func addSubviews() {
-        view.addSubview(button)
+        view.addSubview(titleContainerView)
+        titleContainerView.addSubview(titleLabel)
+        view.addSubview(seeLeaderboardButton)
+        view.addSubview(testsCollectionView)
     }
     
     private func setConstraints() {
-        button.snp.remakeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.height.equalTo(50)
+        titleContainerView.snp.remakeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(70)
+            $0.width.equalTo(500)
+        }
+        
+        titleLabel.snp.remakeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        seeLeaderboardButton.snp.remakeConstraints {
+            $0.top.equalTo(titleContainerView.snp.bottom)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(70)
+        }
+        
+        testsCollectionView.snp.remakeConstraints {
+            $0.top.equalTo(seeLeaderboardButton.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.bottom.equalToSuperview()
         }
     }
     
     private func observe() {
-        button.onTap { [weak self] in
+        seeLeaderboardButton.onTap { [weak self] in
             guard let self = self else { return }
-            self.viewModel.navigate()
+            self.viewModel.navigateToLeaderBoards()
         }
     }
 }

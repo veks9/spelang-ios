@@ -13,6 +13,7 @@ protocol TestListRouting {
     var delegate: TestListRouterDelegate? { get set }
     
     func navigateToTestQuestion()
+    func navigateToLeaderBoards()
 }
 
 protocol TestListRouterDelegate: AnyObject {}
@@ -55,5 +56,9 @@ final class TestListRouter: TestListRouting {
         router.delegate = viewController
         
         self.viewController?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func navigateToLeaderBoards() {
+        // TODO: - implement this
     }
 }

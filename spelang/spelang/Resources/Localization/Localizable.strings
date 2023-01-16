@@ -28,3 +28,7 @@
 "canvas_clear_button_title" = "ERASE ALL";
 "canvas_done_button_title" = "DONE";
 "canvas_skip_button_title" = "SKIP";
+
+// MARK: - TestList
+"test_list_see_leaderboard_button_title" = "See leaderboards >";
+"test_list__title" = "Tests";

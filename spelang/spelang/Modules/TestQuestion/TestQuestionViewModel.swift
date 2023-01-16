@@ -10,6 +10,7 @@ import Combine
 
 protocol TestQuestionViewModeling {
     var updateUI: AnyPublisher<TestQuestionTopViewModel, Never> { get }
+    var questionNumberText: AnyPublisher<String, Never> { get }
     
     func processAnswer(answer: String?)
     func skipButtonTapped()
@@ -22,8 +23,13 @@ final class TestQuestionViewModel {
     private let context: TestQuestionContext
     
     private var questions: [TestQuestion]
-    private var currentIndex: Int = 0
+    private let currentIndexSubject: CurrentValueSubject<Int, Never> = .init(0)
     private let updateUISubject: PassthroughSubject<TestQuestionTopViewModel, Never> = .init()
+    private let testQuestionTopViewModel: TestQuestionTopViewModel
+    
+    private var currentIndexValue: Int {
+        currentIndexSubject.value
+    }
     
     init(
         context: TestQuestionContext,
@@ -32,16 +38,19 @@ final class TestQuestionViewModel {
         self.context = context
         self.router = router
         self.questions = context.questions
+        self.testQuestionTopViewModel = TestQuestionTopViewModel(
+            categoryName: context.categoryName,
+            word: questions[0].word,
+            numberOfQuestions: questions.count,
+            currentQuestionIndex: 0
+        )
     }
     
     private func nextQuestion() {
-        currentIndex += 1
-        updateUISubject.send(
-            TestQuestionTopViewModel(
-                categoryName: context.categoryName,
-                word: questions[currentIndex].word
-            )
-        )
+        currentIndexSubject.send(currentIndexValue + 1)
+        testQuestionTopViewModel.currentQuestionIndex = currentIndexValue
+        testQuestionTopViewModel.word = questions[currentIndexValue].word
+        updateUISubject.send(testQuestionTopViewModel)
     }
 }
 
@@ -52,9 +61,17 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
         updateUISubject.eraseToAnyPublisher()
     }
     
+    var questionNumberText: AnyPublisher<String, Never> {
+        currentIndexSubject.eraseToAnyPublisher()
+            .map { [questions] currentIndex in
+                "\(currentIndex + 1)/\(questions.count)"
+            }
+            .eraseToAnyPublisher()
+    }
+    
     func processAnswer(answer: String?) {
-        questions[currentIndex].answer = answer ?? nil
-        if currentIndex == questions.count - 1 {
+        questions[currentIndexValue].answer = answer ?? nil
+        if currentIndexValue == questions.count - 1 {
             // service send to backend
             // router Navigate to
             router.navigateToTestResult(questions: questions, categoryName: context.categoryName)
@@ -68,11 +85,6 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
     }
     
     func viewDidLoad() {
-        updateUISubject.send(
-            TestQuestionTopViewModel(
-                categoryName: context.categoryName,
-                word: questions[0].word
-            )
-        )
+        updateUISubject.send(testQuestionTopViewModel)
     }
 }
