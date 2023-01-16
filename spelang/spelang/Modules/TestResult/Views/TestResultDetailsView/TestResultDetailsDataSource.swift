@@ -10,23 +10,18 @@ import UIKit
 
 final class TestResultDetailsDataSource: NSObject {
     
-    var items: [TestQuestionResultCellViewModel] = [TestQuestionResultCellViewModel(word: "pas", answer: "dog", correct: "dog", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "mačka", answer: "cat", correct: "cat", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "kit", answer: nil, correct: "whale", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "orao", answer: "igle", correct: "eagle", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "ptica", answer: "bird", correct: "bird", isAnswerCorrect: true),TestQuestionResultCellViewModel(word: "pas", answer: "dog", correct: "dog", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "mačka", answer: "cat", correct: "cat", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "kit", answer: nil, correct: "whale", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "orao", answer: "igle", correct: "eagle", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "ptica", answer: "bird", correct: "bird", isAnswerCorrect: true),TestQuestionResultCellViewModel(word: "pas", answer: "dog", correct: "dog", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "mačka", answer: "cat", correct: "cat", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "kit", answer: nil, correct: "whale", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "orao", answer: "igle", correct: "eagle", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "ptica", answer: "bird", correct: "bird", isAnswerCorrect: true),TestQuestionResultCellViewModel(word: "pas", answer: "dog", correct: "dog", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "mačka", answer: "cat", correct: "cat", isAnswerCorrect: true),
-                                                    TestQuestionResultCellViewModel(word: "kit", answer: nil, correct: "whale", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "orao", answer: "igle", correct: "eagle", isAnswerCorrect: false),
-                                                    TestQuestionResultCellViewModel(word: "ptica", answer: "bird", correct: "bird", isAnswerCorrect: true)]
+    var items: [TestQuestionResultCellViewModel] = []
+    
+    init(from context: TestResultContext) {
+        super.init()
+        self.fillUpItems(from: context)
+    }
+    
+    private func fillUpItems(from context: TestResultContext) {
+        context.questions.forEach { testQuestion in
+            items.append(TestQuestionResultCellViewModel(word: testQuestion.word, answer: testQuestion.answer, correct: testQuestion.translation, isAnswerCorrect: testQuestion.isAnswerCorrect))
+        }
+    }
 }
 
 extension TestResultDetailsDataSource: UITableViewDataSource {

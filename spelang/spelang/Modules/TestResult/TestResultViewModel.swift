@@ -10,8 +10,8 @@ import Combine
 
 protocol TestResultViewModeling {
     var updateUI: AnyPublisher<TestResultModel, Never> { get }
+    var context: TestResultContext { get }
     
-    func showTestDetailsButtonTapped()
     func backToTestListButtonTapped()
     func viewDidLoad()
 }
@@ -19,7 +19,7 @@ protocol TestResultViewModeling {
 final class TestResultViewModel {
 
     private let router: TestResultRouting
-    private let context: TestResultContext
+    let context: TestResultContext
     
     private let updateUISubject: PassthroughSubject<TestResultModel, Never> = .init()
     
@@ -37,10 +37,6 @@ final class TestResultViewModel {
 extension TestResultViewModel: TestResultViewModeling {
     var updateUI: AnyPublisher<TestResultModel, Never> {
         updateUISubject.eraseToAnyPublisher()
-    }
-    
-    func showTestDetailsButtonTapped() {
-        
     }
     
     func backToTestListButtonTapped() {
