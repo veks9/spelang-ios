@@ -54,10 +54,16 @@ final class TestListViewController: UIViewController {
         return button
     }()
     
-    private lazy var testsCollectionView: UICollectionView = {
-        let view = UICollectionView()
+    private lazy var testsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.register(TestListCategoryCell.self, forCellReuseIdentifier: TestListCategoryCell.identity)
+        tableView.register(TestListSeparatorCell.self, forCellReuseIdentifier: TestListSeparatorCell.identity)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.contentInsetAdjustmentBehavior = .never
         
-        return view
+        return tableView
     }()
     
     // MARK: - Lifecycle
@@ -93,7 +99,7 @@ final class TestListViewController: UIViewController {
         view.addSubview(titleContainerView)
         titleContainerView.addSubview(titleLabel)
         view.addSubview(seeLeaderboardButton)
-        view.addSubview(testsCollectionView)
+        view.addSubview(testsTableView)
     }
     
     private func setConstraints() {
@@ -115,7 +121,7 @@ final class TestListViewController: UIViewController {
             $0.height.equalTo(70)
         }
         
-        testsCollectionView.snp.remakeConstraints {
+        testsTableView.snp.remakeConstraints {
             $0.top.equalTo(seeLeaderboardButton.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.bottom.equalToSuperview()
