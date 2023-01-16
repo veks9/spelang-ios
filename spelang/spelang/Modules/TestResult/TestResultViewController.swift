@@ -305,6 +305,11 @@ final class TestResultViewController: UIViewController {
             })
             .store(in: &cancellables)
         
+        seeLeaderboardButton.onTap { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.seeTestLeaderboardTapped()
+        }
+        
         backToTestListButton.onTap { [weak self] in
             guard let self = self else { return }
             self.viewModel.backToTestListButtonTapped()

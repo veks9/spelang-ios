@@ -17,12 +17,13 @@ final class UserDefaultsStorage: UserDefaultsStoring {
     static let shared = UserDefaultsStorage()
     
     static let defaultMyTeamId = -1
-
+    
     private init() {}
 
     // MARK: - Keys
 
     static let myTeamIdKey = "myTeamId"
+    private let usernameKey = "username"
     
     // MARK: - Properties
     
@@ -32,6 +33,15 @@ final class UserDefaultsStorage: UserDefaultsStoring {
             .map { $0 == UserDefaultsStorage.defaultMyTeamId ? nil : $0 }
             .eraseToAnyPublisher()
     }()
+    
+    var username: String {
+        get {
+            userDefaults.string(forKey: usernameKey) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: usernameKey)
+        }
+    }
 
     func setMyTeamId(id: Int?) {
         userDefaults.set(id, forKey: UserDefaultsStorage.myTeamIdKey)

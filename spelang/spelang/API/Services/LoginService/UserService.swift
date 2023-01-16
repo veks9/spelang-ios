@@ -10,6 +10,7 @@ import Combine
 
 final class UserService: UserServicing {
     func loginUser(username: String, pin: String) -> AnyPublisher<Model.User, Model.ErrorResponse> {
-        APIClient.shared.performRequest(LoginUserRequest(username: username, pin: pin)).eraseToAnyPublisher()
+        UserDefaultsStorage.shared.username = username
+        return APIClient.shared.performRequest(LoginUserRequest(username: username, pin: pin)).eraseToAnyPublisher()
     }
 }

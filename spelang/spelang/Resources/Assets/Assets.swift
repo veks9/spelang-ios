@@ -15,6 +15,7 @@ enum Assets: String {
     case darkBackground
     case rightArrowhead = "right_arrowhead"
     case closeIcon = "close_icon"
+    case tropyhIcon = "trophy_icon"
     
     var image: UIImage? {
         return UIImage(named: rawValue)

@@ -11,6 +11,7 @@ import Foundation
 enum Endpoint {
     case getUser
     case createUser
+    case testLeaderboard
     
     var path: String {
         return NetworkConstants.baseURLString + _path
@@ -22,6 +23,8 @@ enum Endpoint {
             return "/users"
         case .createUser:
             return "/users"
+        case .testLeaderboard:
+            return "/test/leaderboard/category/difficulty"
         }
     }
 }

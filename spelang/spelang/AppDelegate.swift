@@ -21,7 +21,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// MARK: - Private functions
+// MARK: - Private methods
 
 private extension AppDelegate {
     func disableSnapKitMessagesInsideDebugger() {
