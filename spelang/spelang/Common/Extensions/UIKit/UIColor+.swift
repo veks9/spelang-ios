@@ -67,6 +67,9 @@ extension UIColor {
     
     /// #23E1D6
     static let gradientGreen = UIColor(rgb: 0x23E1D6)
+    
+    /// #168CBF
+    static let appLightBlue = UIColor(rgb: 0x168CBF)
 }
 
 // MARK: - Light/Dark mode support

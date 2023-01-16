@@ -138,6 +138,7 @@ final class TestResultDetailsView: UIView {
         return label
     }()
     
+    // MARK: - Lifecycle
     
     init() {
         super.init(frame: .zero)
@@ -242,7 +243,7 @@ final class TestResultDetailsView: UIView {
     }
 }
 
-// MARK: - Public functions
+// MARK: - Public methods
 
 extension TestResultDetailsView {
     func updateUI(viewModel: TestResultDetailsViewModel) {

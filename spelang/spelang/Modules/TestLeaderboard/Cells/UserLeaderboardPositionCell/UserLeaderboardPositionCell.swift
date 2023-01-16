@@ -1,21 +1,23 @@
 //
-//  TestQuestionResultCell.swift
+//  UserLeaderboardPositionCell.swift
 //  spelang
 //
-//  Created by Luka Bokarica on 15.01.2023..
+//  Created by Luka Bokarica on 16.01.2023..
 //
 
 import Foundation
 import UIKit
 
-final class TestQuestionResultCell: UITableViewCell {
-    private var viewModel: TestQuestionResultCellViewModel?
+final class UserLeaderboardPositionCell: UITableViewCell {
+    
+    private var viewModel: UserLeaderboardPositionCellViewModel?
     
     // MARK: - Views
     
-    private lazy var columnTitlesStackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
+        // TODO: fix alignment and distribution to match design from figma
         view.alignment = .center
         view.distribution = .fillEqually
         view.backgroundColor = .clear
@@ -23,7 +25,7 @@ final class TestQuestionResultCell: UITableViewCell {
         return view
     }()
     
-    private lazy var wordLabel: UILabel = {
+    private lazy var leaderboardPositionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
@@ -31,20 +33,27 @@ final class TestQuestionResultCell: UITableViewCell {
         return label
     }()
     
-    private lazy var answerLabel: UILabel = {
+    private lazy var usernameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
         
         return label
     }()
     
-    private lazy var correctLabel: UILabel = {
+    private lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
         
         return label
+    }()
+    
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .appBackgroundNavyBlue
+        
+        return view
     }()
     
     
@@ -69,35 +78,34 @@ final class TestQuestionResultCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        contentView.addSubview(columnTitlesStackView)
-        columnTitlesStackView.addArrangedSubview(wordLabel)
-        columnTitlesStackView.addArrangedSubview(answerLabel)
-        columnTitlesStackView.addArrangedSubview(correctLabel)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(leaderboardPositionLabel)
+        stackView.addArrangedSubview(usernameLabel)
+        stackView.addArrangedSubview(scoreLabel)
+        contentView.addSubview(separatorView)
     }
     
     private func setConstraints() {
-        columnTitlesStackView.snp.remakeConstraints {
-            $0.edges.equalToSuperview()
+        stackView.snp.remakeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(25)
+        }
+        
+        separatorView.snp.remakeConstraints {
+            $0.top.equalTo(stackView.snp.bottom).offset(5)
+            $0.bottom.equalToSuperview().offset(-10)
         }
     }
 }
 
 // MARK: - Public methods
 
-extension TestQuestionResultCell {
-    func updateUI(with viewModel: TestQuestionResultCellViewModel) {
+extension UserLeaderboardPositionCell {
+    func updateUI(with viewModel: UserLeaderboardPositionCellViewModel) {
         self.viewModel = viewModel
-        wordLabel.text = viewModel.word
-        guard let answer = viewModel.answer else {
-            answerLabel.text = "SKIPPED"
-            answerLabel.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
-            correctLabel.text = viewModel.correct
-            
-            return
-        }
-        answerLabel.text = answer
-        let color: UIColor = viewModel.isAnswerCorrect ? .green : .red
-        answerLabel.set(textColor: color, font: .systemFont(ofSize: 22, weight: .regular))
-        correctLabel.text = viewModel.correct
+        leaderboardPositionLabel.text = "#\(viewModel.position)"
+        usernameLabel.text = viewModel.username
+        scoreLabel.text = viewModel.score
     }
 }
+

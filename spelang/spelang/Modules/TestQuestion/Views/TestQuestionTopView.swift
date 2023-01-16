@@ -115,7 +115,7 @@ final class TestQuestionTopView: UIView {
     }
 }
 
-// MARK: - Public functions
+// MARK: - Public methods
 
 extension TestQuestionTopView {
     func updateUI(viewModel: TestQuestionTopViewModel) {

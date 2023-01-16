@@ -16,7 +16,7 @@ final class APIClient {
     let decoder = JSONDecoder()
 }
 
-// MARK: - Public functions
+// MARK: - Public methods
 
 extension APIClient {
     func performRequest<T: APIRequest>(_ request: T) -> AnyPublisher<T.ResponseType, Model.ErrorResponse> {

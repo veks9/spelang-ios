@@ -13,6 +13,7 @@ protocol TestResultViewModeling {
     var context: TestResultContext { get }
     
     func backToTestListButtonTapped()
+    func seeTestLeaderboardTapped()
     func viewDidLoad()
 }
 
@@ -41,6 +42,10 @@ extension TestResultViewModel: TestResultViewModeling {
     
     func backToTestListButtonTapped() {
         router.navigateToTestList()
+    }
+    
+    func seeTestLeaderboardTapped() {
+        router.navigateToTestLeaderboard(for: context.categoryName)
     }
     
     func viewDidLoad() {

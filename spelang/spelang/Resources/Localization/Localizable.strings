@@ -28,3 +28,6 @@
 "canvas_clear_button_title" = "ERASE ALL";
 "canvas_done_button_title" = "DONE";
 "canvas_skip_button_title" = "SKIP";
+
+// MARK: - Leaderboard
+"leaderboard_title" = "Leaderboard";
