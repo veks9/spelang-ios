@@ -16,14 +16,10 @@ protocol TestLeaderboardViewModeling {
     func viewDidLoad()
 }
 
-final class TestLeaderboardViewModel: TestLeaderboardViewModeling {
+final class TestLeaderboardViewModel {
     var dataSource: TestLeaderboardDataSource
     var testCategoryName: String
-    var updateUI: AnyPublisher<Bool, Never> {
-        updateUISubject.eraseToAnyPublisher()
-    }
     
-
     private let router: TestLeaderboardRouting
     private let context: TestLeaderboardContext
     private let testLeaderboardService: TestLeaderboardServicing
@@ -45,7 +41,7 @@ final class TestLeaderboardViewModel: TestLeaderboardViewModeling {
     }
     
     func viewDidLoad() {
-        testLeaderboardService.fetchTestLeaderboard(difficulty: "easy", category: context.testCategoryName.lowercased())
+        testLeaderboardService.fetchTestLeaderboard(difficulty: "easy", categoryName: context.testCategoryName.lowercased())
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
@@ -61,4 +57,13 @@ final class TestLeaderboardViewModel: TestLeaderboardViewModeling {
             .store(in: &cancellables)
         updateUISubject.send(true)
     }
+}
+
+// MARK: - TestLeaderboardViewModeling
+
+extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
+    var updateUI: AnyPublisher<Bool, Never> {
+        updateUISubject.eraseToAnyPublisher()
+    }
+    
 }

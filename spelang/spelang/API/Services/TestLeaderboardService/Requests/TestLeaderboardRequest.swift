@@ -12,7 +12,7 @@ struct TestLeaderboardRequest: APIRequest {
     typealias ResponseType = [Model.TestLeaderboardPosition]
         
     var path: String {
-        return Endpoint.testLeaderboard.path
+        return Endpoint.testLeaderboard(categoryName, difficulty).path
     }
     
     var query: [String : String?]?
@@ -20,8 +20,6 @@ struct TestLeaderboardRequest: APIRequest {
     var requestBody: Data?
     var authenticationType: AuthenticationType = .none
     var contentType: ContentType? = .applicationJson
-    
-    init(difficulty: String, category: String) {
-        requestBody = Model.TestLeaderboardRequest(difficulty: difficulty, category: category).data
-    }
+    var difficulty: String
+    var categoryName: String
 }

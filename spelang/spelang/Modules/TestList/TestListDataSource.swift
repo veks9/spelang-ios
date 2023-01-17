@@ -14,11 +14,7 @@ enum TestListCellType {
 
 final class TestListDataSource: NSObject {
     
-    let items: [TestListCellType]
-    
-    init(items: [TestListCellType]) {
-        self.items = items
-    }
+    let items: [TestListCellType] = []
 }
 
 extension TestListDataSource: UITableViewDataSource {

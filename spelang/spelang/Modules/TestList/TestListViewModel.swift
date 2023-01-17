@@ -20,9 +20,25 @@ final class TestListViewModel {
 
     private let router: TestListRouting
     private let updateUISubject: PassthroughSubject<TestListDataSource, Never> = .init()
-        
-    let data = TestListDataSource(
-        items: [
+    
+    var dataSource = TestListDataSource()
+    
+    init(
+        router: TestListRouting
+    ) {
+        self.router = router
+    }
+}
+
+// MARK: - TestListViewModeling
+
+extension TestListViewModel: TestListViewModeling {
+    var updateUI: AnyPublisher<TestListDataSource, Never> {
+        updateUISubject.eraseToAnyPublisher()
+    }
+    
+    func viewDidLoad() {
+        dataSource.items = [
             .category(
                 TestListCategoryCellViewModel(
                     title: "Easy",
@@ -149,28 +165,7 @@ final class TestListViewModel {
                 )
             ),
         ]
-    )
-    
-    
-    init(
-        router: TestListRouting
-    ) {
-        self.router = router
-    }
-}
-
-// MARK: - TestListViewModeling
-
-extension TestListViewModel: TestListViewModeling {
-    var updateUI: AnyPublisher<TestListDataSource, Never> {
-        updateUISubject.eraseToAnyPublisher()
-    }
-    
-    func viewDidLoad() {
-        
-        updateUISubject.send(
-            data
-        )
+        updateUISubject.send(dataSource)
     }
     
     func seeLeaderboardButtonTapped() {
