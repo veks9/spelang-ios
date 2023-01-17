@@ -12,7 +12,6 @@ protocol TestLeaderboardViewModeling {
     var dataSource: TestLeaderboardDataSource { get set }
     var testCategoryName: String { get set }
     var updateUI: AnyPublisher<Bool, Never> { get }
-    var testLeaderboardService: TestLeaderboardServicing { get }
 
     func viewDidLoad()
 }
@@ -23,10 +22,11 @@ final class TestLeaderboardViewModel: TestLeaderboardViewModeling {
     var updateUI: AnyPublisher<Bool, Never> {
         updateUISubject.eraseToAnyPublisher()
     }
-    var testLeaderboardService: TestLeaderboardServicing
+    
 
     private let router: TestLeaderboardRouting
     private let context: TestLeaderboardContext
+    private let testLeaderboardService: TestLeaderboardServicing
     
     private let updateUISubject: PassthroughSubject<Bool, Never> = .init()
     private var cancellables: Set<AnyCancellable> = .init()
@@ -34,13 +34,14 @@ final class TestLeaderboardViewModel: TestLeaderboardViewModeling {
     init(
         context: TestLeaderboardContext,
         router: TestLeaderboardRouting,
+        testLeaderboardService: TestLeaderboardServicing = TestLeaderboardService(),
         dataSource: TestLeaderboardDataSource
     ) {
         self.context = context
         self.router = router
         self.dataSource = dataSource
         self.testCategoryName = context.testCategoryName
-        self.testLeaderboardService = TestLeaderboardService()
+        self.testLeaderboardService = testLeaderboardService
     }
     
     func viewDidLoad() {

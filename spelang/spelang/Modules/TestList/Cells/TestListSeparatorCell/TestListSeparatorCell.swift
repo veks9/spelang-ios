@@ -13,9 +13,12 @@ final class TestListSeparatorCell: UITableViewCell {
     
     // MARK: - Views
     
+    private lazy var containerView: UIView = .init()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         styleView()
+        addSubviews()
         setConstraints()
     }
     
@@ -26,10 +29,16 @@ final class TestListSeparatorCell: UITableViewCell {
     
     private func styleView() {
         selectionStyle = .none
+        backgroundColor = .clear
+    }
+    
+    private func addSubviews() {
+        contentView.addSubview(containerView)
     }
     
     private func setConstraints() {
-        snp.remakeConstraints {
+        containerView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
             $0.height.equalTo(40)
         }
     }

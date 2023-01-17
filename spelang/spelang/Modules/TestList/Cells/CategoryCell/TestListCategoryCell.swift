@@ -18,8 +18,8 @@ final class TestListCategoryCell: UITableViewCell {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .backgroundPrimary
         view.clipsToBounds = true
+        view.layer.cornerRadius = 30
         
         return view
     }()
@@ -27,7 +27,7 @@ final class TestListCategoryCell: UITableViewCell {
     private lazy var blurEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.alpha = 0.7
+        blurEffectView.alpha = 0.8
         
         return blurEffectView
     }()
@@ -43,7 +43,7 @@ final class TestListCategoryCell: UITableViewCell {
     private lazy var testsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 30
+        layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 30
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -51,6 +51,7 @@ final class TestListCategoryCell: UITableViewCell {
         view.delegate = self
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomNotch, right: 0)
         view.isScrollEnabled = false
+        view.backgroundColor = .clear
         
         return view
     }()
@@ -69,6 +70,7 @@ final class TestListCategoryCell: UITableViewCell {
     
     private func styleView() {
         selectionStyle = .none
+        backgroundColor = .clear
     }
     
     private func addSubviews() {
@@ -82,6 +84,7 @@ final class TestListCategoryCell: UITableViewCell {
         containerView.snp.remakeConstraints {
             $0.top.bottom.equalToSuperview().inset(10)
             $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
         }
         
         blurEffectView.snp.remakeConstraints {
@@ -96,6 +99,8 @@ final class TestListCategoryCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.trailing.bottom.equalToSuperview().inset(30)
         }
+        testsCollectionView.setContentHuggingPriority(.required, for: .vertical)
+        testsCollectionView.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 }
 
@@ -115,5 +120,11 @@ extension TestListCategoryCell {
 extension TestListCategoryCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("🔴🔴🔴🔴🔴🔴🔴🔴")
+    }
+}
+
+extension TestListCategoryCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 240, height: 160)
     }
 }

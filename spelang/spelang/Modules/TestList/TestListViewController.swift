@@ -5,13 +5,15 @@
 //  Created by Vedran Hernaus on 13.01.2023..
 //
 
-import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 final class TestListViewController: UIViewController {
     
     private var viewModel: TestListViewModeling
+    private var cancellables: Set<AnyCancellable> = .init()
+    private var dataSource: TestListDataSource?
     
     // MARK: - Views
     
@@ -36,7 +38,7 @@ final class TestListViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .bold))
-        label.text = "".localized()
+        label.text = "test_list_title".localized()
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
         label.textAlignment = .center
@@ -62,6 +64,9 @@ final class TestListViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.contentInsetAdjustmentBehavior = .never
+        tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
+        tableView.delegate = self
         
         return tableView
     }()
@@ -83,6 +88,7 @@ final class TestListViewController: UIViewController {
         addSubviews()
         setConstraints()
         observe()
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +102,7 @@ final class TestListViewController: UIViewController {
     }
     
     private func addSubviews() {
+        view.addSubview(backgroundImageView)
         view.addSubview(titleContainerView)
         titleContainerView.addSubview(titleLabel)
         view.addSubview(seeLeaderboardButton)
@@ -103,6 +110,10 @@ final class TestListViewController: UIViewController {
     }
     
     private func setConstraints() {
+        backgroundImageView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         titleContainerView.snp.remakeConstraints {
             $0.top.equalToSuperview().offset(50)
             $0.centerX.equalToSuperview()
@@ -129,9 +140,18 @@ final class TestListViewController: UIViewController {
     }
     
     private func observe() {
+        viewModel.updateUI
+            .sink(receiveValue: { [weak self] dataSource in
+                guard let self = self else { return }
+                self.dataSource = dataSource
+                self.testsTableView.dataSource = dataSource
+                self.testsTableView.reloadData()
+            })
+            .store(in: &cancellables)
+        
         seeLeaderboardButton.onTap { [weak self] in
             guard let self = self else { return }
-            self.viewModel.navigateToLeaderBoards()
+            self.viewModel.seeLeaderboardButtonTapped()
         }
     }
 }
@@ -139,3 +159,19 @@ final class TestListViewController: UIViewController {
 // MARK: - TestListRouterDelegate
 
 extension TestListViewController: TestListRouterDelegate {}
+
+// MARK: - UITableViewDelegate
+
+extension TestListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let dataSource = dataSource else { return 0 }
+        switch dataSource.items[indexPath.row] {
+        case .category(let cellViewModel):
+            let numberOfItems = CGFloat(cellViewModel.dataSource.items.count)
+            let numberOfCellsInRow = CGFloat(floor((UIScreen.width - 30) / CGFloat(240)))
+            return (CGFloat(ceil(numberOfItems / numberOfCellsInRow)) * (160 + 30)) + 120
+        case .separator:
+            return 40
+        }
+    }
+}

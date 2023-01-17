@@ -40,38 +40,49 @@ private extension AppDelegate {
 //    }
     
     func createRootViewController() -> UIViewController {
-        let router = TestQuestionRouter()
-        let context = TestQuestionContext(
-            questions: [
-                TestQuestion(
-                    word: "mačka",
-                    translation: "cat",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "pas",
-                    translation: "dog",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "konj",
-                    translation: "horse",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "slon",
-                    translation: "elephant",
-                    answer: nil
-                )
-            ],
-            categoryName: "Animals"
-        )
-        let viewModel = TestQuestionViewModel(context: context, router: router)
-        let viewController = TestQuestionViewController(viewModel: viewModel)
-        
+        let router = TestListRouter()
+        let viewModel = TestListViewModel(router: router)
+        let viewController = TestListViewController(viewModel: viewModel)
+
         router.viewController = viewController
         router.delegate = viewController
-        
+
         return viewController
     }
+    
+//    func createRootViewController() -> UIViewController {
+//        let router = TestQuestionRouter()
+//        let context = TestQuestionContext(
+//            questions: [
+//                TestQuestion(
+//                    word: "mačka",
+//                    translation: "cat",
+//                    answer: nil
+//                ),
+//                TestQuestion(
+//                    word: "pas",
+//                    translation: "dog",
+//                    answer: nil
+//                ),
+//                TestQuestion(
+//                    word: "konj",
+//                    translation: "horse",
+//                    answer: nil
+//                ),
+//                TestQuestion(
+//                    word: "slon",
+//                    translation: "elephant",
+//                    answer: nil
+//                )
+//            ],
+//            categoryName: "Animals"
+//        )
+//        let viewModel = TestQuestionViewModel(context: context, router: router)
+//        let viewController = TestQuestionViewController(viewModel: viewModel)
+//
+//        router.viewController = viewController
+//        router.delegate = viewController
+//
+//        return viewController
+//    }
 }

@@ -14,6 +14,10 @@ enum TestsCellType {
 final class TestsDataSource: NSObject {
     
     var items: [TestsCellType] = []
+    
+    init(items: [TestsCellType]) {
+        self.items = items
+    }
 }
 
 extension TestsDataSource: UICollectionViewDataSource {
