@@ -110,7 +110,7 @@ final class TestLeaderboardViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var closeTestLeaderboardButton: UIButton = {
+    private lazy var dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.setImage(Assets.closeIcon.image, for: .normal)
@@ -118,7 +118,6 @@ final class TestLeaderboardViewController: UIViewController {
         
         return button
     }()
-    
     
     // MARK: - Lifecycle
     
@@ -143,7 +142,7 @@ final class TestLeaderboardViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(backgroundImageView)
-        view.addSubview(closeTestLeaderboardButton)
+        view.addSubview(dismissButton)
         view.addSubview(leaderboardTitleContainerView)
         leaderboardTitleContainerView.addSubview(leaderboardTitleStackView)
         leaderboardTitleStackView.addArrangedSubview(leaderboardTitleLabel)
@@ -160,7 +159,7 @@ final class TestLeaderboardViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        closeTestLeaderboardButton.snp.remakeConstraints {
+        dismissButton.snp.remakeConstraints {
             $0.top.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
             $0.height.width.equalTo(45)
@@ -215,7 +214,7 @@ final class TestLeaderboardViewController: UIViewController {
             })
             .store(in: &cancellables)
         
-        closeTestLeaderboardButton.onTap { [weak self] in
+        dismissButton.onTap { [weak self] in
             guard let self = self else { return }
             self.viewModel.closeButtonTapped()
         }

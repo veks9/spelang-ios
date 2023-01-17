@@ -52,8 +52,7 @@ extension TestResultViewModel: TestResultViewModeling {
         let testResultModel = TestResultModel(
             correctAnswers: context.questions.filter { $0.isAnswerCorrect }.count,
             numberOfQuestions: context.questions.count,
-            // TODO: - get this from API
-            leaderboardPosition: 5,
+            leaderboardPosition: context.rank,
             categoryName: context.categoryName
         )
         updateUISubject.send(testResultModel)

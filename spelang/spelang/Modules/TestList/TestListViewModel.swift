@@ -75,13 +75,12 @@ extension TestListViewModel: TestListViewModeling {
                 guard let self = self else { return }
                 self.dataSource.items = TestListCategoryCellViewModel.map(
                     from: model.leaderboards,
-                    isLeaderboard: true
+                    isLeaderboard: false
                 )
                 self.observeCells()
                 self.updateUISubject.send(self.dataSource)
             })
             .store(in: &cancellables)
-        
     }
     
     func seeLeaderboardButtonTapped() {

@@ -14,6 +14,7 @@ enum Endpoint {
     case testLeaderboard(category: String, difficulty: String)
     case getTest(category: String, difficulty: String)
     case getAllTests(username: String)
+    case createTest
     
     var path: String {
         return NetworkConstants.baseURLString + _path
@@ -31,6 +32,8 @@ enum Endpoint {
             return "/words/category/\(categoryName)/difficulty/\(difficulty)"
         case .getAllTests(let username):
             return "/test/leaderboard/username/\(username)"
+        case .createTest:
+            return "/test"
         }
     }
 }

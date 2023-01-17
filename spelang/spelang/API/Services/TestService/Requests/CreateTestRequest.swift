@@ -1,5 +1,5 @@
 //
-//  GetTestByCategoryAndDifficulty.swift
+//  CreateTestRequest.swift
 //  spelang
 //
 //  Created by Vedran Hernaus on 17.01.2023..
@@ -8,18 +8,20 @@
 import Foundation
 import Alamofire
 
-struct GetTestByCategoryAndDifficulty: APIRequest {
-    typealias ResponseType = [Model.TestWord]
+struct CreateTestRequest: APIRequest {
+    typealias ResponseType = Model.TestResult
         
     var path: String {
-        return Endpoint.getTest(category: categoryName, difficulty: difficulty).path
+        return Endpoint.createTest.path
     }
     
     var query: [String : String?]?
-    var httpMethod: HTTPMethod = .get
+    var httpMethod: HTTPMethod = .post
     var requestBody: Data?
     var authenticationType: AuthenticationType = .none
     var contentType: ContentType? = .applicationJson
-    var categoryName: String
-    var difficulty: String
+    
+    init(bodyModel: Model.CreateTestBody) {
+        requestBody = bodyModel.data
+    }
 }

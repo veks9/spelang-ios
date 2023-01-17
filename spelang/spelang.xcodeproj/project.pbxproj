@@ -59,10 +59,13 @@
 		7140F4A42974B0B00054FA72 /* TestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */; };
 		716749562976D4500047CA78 /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716749552976D4500047CA78 /* TestService.swift */; };
 		716749582976D4550047CA78 /* TestServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716749572976D4550047CA78 /* TestServicing.swift */; };
-		7167495C2976D4C10047CA78 /* GetTestByCategoryAndDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167495B2976D4C10047CA78 /* GetTestByCategoryAndDifficulty.swift */; };
-		7167495E2976D57E0047CA78 /* GetAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167495D2976D57E0047CA78 /* GetAllTests.swift */; };
-		716749602976D64F0047CA78 /* TestLeaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167495F2976D64F0047CA78 /* TestLeaderboard.swift */; };
+		7167495C2976D4C10047CA78 /* GetTestByCategoryAndDifficultyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167495B2976D4C10047CA78 /* GetTestByCategoryAndDifficultyRequest.swift */; };
+		7167495E2976D57E0047CA78 /* GetAllTestsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167495D2976D57E0047CA78 /* GetAllTestsRequest.swift */; };
+		716749602976D64F0047CA78 /* TestLeaderboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167495F2976D64F0047CA78 /* TestLeaderboards.swift */; };
 		716749622976F8190047CA78 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716749612976F8190047CA78 /* TestModel.swift */; };
+		7167496429773F540047CA78 /* CreateTestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167496329773F540047CA78 /* CreateTestBody.swift */; };
+		7167496629773FD90047CA78 /* CreateTestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167496529773FD90047CA78 /* CreateTestRequest.swift */; };
+		71674968297740AB0047CA78 /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71674967297740AB0047CA78 /* TestResult.swift */; };
 		716B6E02295A242D0096F780 /* Publishers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD8295A242D0096F780 /* Publishers+.swift */; };
 		716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DD9295A242D0096F780 /* AnyPublisher+.swift */; };
 		716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6DDB295A242D0096F780 /* UINavigationController+.swift */; };
@@ -185,10 +188,13 @@
 		7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellViewModel.swift; sourceTree = "<group>"; };
 		716749552976D4500047CA78 /* TestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestService.swift; sourceTree = "<group>"; };
 		716749572976D4550047CA78 /* TestServicing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestServicing.swift; sourceTree = "<group>"; };
-		7167495B2976D4C10047CA78 /* GetTestByCategoryAndDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestByCategoryAndDifficulty.swift; sourceTree = "<group>"; };
-		7167495D2976D57E0047CA78 /* GetAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllTests.swift; sourceTree = "<group>"; };
-		7167495F2976D64F0047CA78 /* TestLeaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboard.swift; sourceTree = "<group>"; };
+		7167495B2976D4C10047CA78 /* GetTestByCategoryAndDifficultyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestByCategoryAndDifficultyRequest.swift; sourceTree = "<group>"; };
+		7167495D2976D57E0047CA78 /* GetAllTestsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllTestsRequest.swift; sourceTree = "<group>"; };
+		7167495F2976D64F0047CA78 /* TestLeaderboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeaderboards.swift; sourceTree = "<group>"; };
 		716749612976F8190047CA78 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		7167496329773F540047CA78 /* CreateTestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTestBody.swift; sourceTree = "<group>"; };
+		7167496529773FD90047CA78 /* CreateTestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTestRequest.swift; sourceTree = "<group>"; };
+		71674967297740AB0047CA78 /* TestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResult.swift; sourceTree = "<group>"; };
 		716B6DD8295A242D0096F780 /* Publishers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+.swift"; sourceTree = "<group>"; };
 		716B6DD9295A242D0096F780 /* AnyPublisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+.swift"; sourceTree = "<group>"; };
 		716B6DDB295A242D0096F780 /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -516,8 +522,9 @@
 		7167495A2976D4B30047CA78 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				7167495B2976D4C10047CA78 /* GetTestByCategoryAndDifficulty.swift */,
-				7167495D2976D57E0047CA78 /* GetAllTests.swift */,
+				7167495B2976D4C10047CA78 /* GetTestByCategoryAndDifficultyRequest.swift */,
+				7167495D2976D57E0047CA78 /* GetAllTestsRequest.swift */,
+				7167496529773FD90047CA78 /* CreateTestRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -711,7 +718,9 @@
 				37FF92A92975562C00FED2EE /* TestLeaderboardPosition.swift */,
 				37FF92AF2975E4AF00FED2EE /* TestLeaderboardRequestModel.swift */,
 				7179E6B22976D22100D1FB93 /* TestWord.swift */,
-				7167495F2976D64F0047CA78 /* TestLeaderboard.swift */,
+				7167495F2976D64F0047CA78 /* TestLeaderboards.swift */,
+				7167496329773F540047CA78 /* CreateTestBody.swift */,
+				71674967297740AB0047CA78 /* TestResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -989,7 +998,7 @@
 				7178F2822975CE2D0018956A /* TestListCategoryCellViewModel.swift in Sources */,
 				716B6E05295A242D0096F780 /* CALayer+.swift in Sources */,
 				716B6E0E295A242D0096F780 /* UILabel+.swift in Sources */,
-				7167495E2976D57E0047CA78 /* GetAllTests.swift in Sources */,
+				7167495E2976D57E0047CA78 /* GetAllTestsRequest.swift in Sources */,
 				7140F4832971F2530054FA72 /* TestListRouter.swift in Sources */,
 				716B6E37295A24460096F780 /* Endpoint.swift in Sources */,
 				716B6E0D295A242D0096F780 /* UIViewController+.swift in Sources */,
@@ -1021,13 +1030,14 @@
 				37FF92992974BDC800FED2EE /* TestLeaderboardViewController.swift in Sources */,
 				716B6E26295A242D0096F780 /* Double+.swift in Sources */,
 				7140F4952972C5BD0054FA72 /* TestQuestionTopView.swift in Sources */,
-				7167495C2976D4C10047CA78 /* GetTestByCategoryAndDifficulty.swift in Sources */,
+				7167495C2976D4C10047CA78 /* GetTestByCategoryAndDifficultyRequest.swift in Sources */,
 				7140F4762971E6200054FA72 /* UserServicing.swift in Sources */,
 				7140F4652971D2520054FA72 /* LoginViewController.swift in Sources */,
 				7140F4742971E61C0054FA72 /* UserService.swift in Sources */,
 				716B6E24295A242D0096F780 /* Dictionary+.swift in Sources */,
 				716B6E5B295A25B90096F780 /* ErrorResponse.swift in Sources */,
 				7178F2842975D3F70018956A /* TestsDataSource.swift in Sources */,
+				71674968297740AB0047CA78 /* TestResult.swift in Sources */,
 				37FF929F29754BC200FED2EE /* UserLeaderboardPositionCell.swift in Sources */,
 				7140F49F297480A80054FA72 /* TestResultModel.swift in Sources */,
 				716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */,
@@ -1037,7 +1047,7 @@
 				7140F4A22974B06D0054FA72 /* TestCell.swift in Sources */,
 				716B6E29295A242D0096F780 /* String+Localization.swift in Sources */,
 				716B6E06295A242D0096F780 /* UIDevice+.swift in Sources */,
-				716749602976D64F0047CA78 /* TestLeaderboard.swift in Sources */,
+				716749602976D64F0047CA78 /* TestLeaderboards.swift in Sources */,
 				37FF9280297414C500FED2EE /* TestResultDetailsViewModel.swift in Sources */,
 				37ED27282971DD950065FCFA /* StrokeManager.swift in Sources */,
 				716B6E36295A24460096F780 /* NetworkConstants.swift in Sources */,
@@ -1084,9 +1094,11 @@
 				7178F28A2975D5DD0018956A /* TestListSeparatorCell.swift in Sources */,
 				37ED27262971DD6A0065FCFA /* RecognizedInk.swift in Sources */,
 				37FF92A329754CFE00FED2EE /* TestLeaderboardDataSource.swift in Sources */,
+				7167496429773F540047CA78 /* CreateTestBody.swift in Sources */,
 				7140F4792971E6790054FA72 /* LoginUserRequest.swift in Sources */,
 				7140F4672971D2520054FA72 /* LoginViewModel.swift in Sources */,
 				7140F47D2971E8550054FA72 /* User.swift in Sources */,
+				7167496629773FD90047CA78 /* CreateTestRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
