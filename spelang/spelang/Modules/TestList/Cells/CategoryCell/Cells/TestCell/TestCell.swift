@@ -114,10 +114,10 @@ extension TestCell {
     func updateUI(viewModel: TestCellViewModel) {
         self.viewModel = viewModel
         if let leaderboardPosition = viewModel.leaderboardPosition {
-            placementLabel.text = "#\(leaderboardPosition)"
+            placementLabel.text = leaderboardPosition.lowercased() == "n/a" ? leaderboardPosition : "#\(leaderboardPosition)"
             placementLabel.isHidden = false
             placementContainerView.isHidden = false
         }
-        titleLabel.text = viewModel.title
+        titleLabel.text = viewModel.title.capitalized
     }
 }

@@ -35,7 +35,7 @@ final class TestResultRouter: TestResultRouting {
     func navigateToTestLeaderboard(for testName: String) {
         let router = TestLeaderboardRouter()
         let context = TestLeaderboardContext(testCategoryName: testName)
-        let viewModel = TestLeaderboardViewModel(context: context, router: router, dataSource: TestLeaderboardDataSource())
+        let viewModel = TestLeaderboardViewModel(context: context, router: router)
         let viewController = TestLeaderboardViewController(viewModel: viewModel)
         router.viewController = viewController
         

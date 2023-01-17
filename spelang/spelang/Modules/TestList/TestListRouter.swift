@@ -12,7 +12,7 @@ protocol TestListRouting {
     var viewController: TestListViewController? { get set }
     var delegate: TestListRouterDelegate? { get set }
     
-    func navigateToTestQuestion()
+    func navigateToTestQuestion(categoryName: String, difficulty: String)
     func navigateToLeaderBoards()
 }
 
@@ -22,33 +22,9 @@ final class TestListRouter: TestListRouting {
     weak var viewController: TestListViewController?
     weak var delegate: TestListRouterDelegate?
     
-    func navigateToTestQuestion() {
+    func navigateToTestQuestion(categoryName: String, difficulty: String) {
         let router = TestQuestionRouter()
-        let context = TestQuestionContext(
-            questions: [
-                TestQuestion(
-                    word: "mačka",
-                    translation: "cat",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "pas",
-                    translation: "dog",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "konj",
-                    translation: "horse",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "slon",
-                    translation: "elephant",
-                    answer: nil
-                )
-            ],
-            categoryName: "Animals"
-        )
+        let context = TestQuestionContext(categoryName: categoryName, difficulty: difficulty)
         let viewModel = TestQuestionViewModel(context: context, router: router)
         let viewController = TestQuestionViewController(viewModel: viewModel)
         

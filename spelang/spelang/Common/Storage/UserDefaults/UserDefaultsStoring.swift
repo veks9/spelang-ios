@@ -9,7 +9,5 @@ import Foundation
 import Combine
 
 protocol UserDefaultsStoring {
-    var myTeamId: AnyPublisher<Int?, Never> { get }
-    
-    func setMyTeamId(id: Int?)
+    var username: String { get set }
 }

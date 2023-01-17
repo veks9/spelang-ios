@@ -182,6 +182,7 @@ final class TestQuestionViewController: UIViewController {
         
         skipButton.onTap { [weak self] in
             guard let self = self else { return }
+            self.clearInk()
             self.viewModel.skipButtonTapped()
         }
     }
@@ -285,7 +286,6 @@ extension TestQuestionViewController: StrokeManagerDelegate {
     func displayMessage(message: String) {}
     
     func didRecognizeCanvasWord(_ canvasWord: String?) {
-        print("🟢🟢🟢🟢\(canvasWord)🟢🟢🟢🟢")
         viewModel.processAnswer(answer: canvasWord)
     }
 }

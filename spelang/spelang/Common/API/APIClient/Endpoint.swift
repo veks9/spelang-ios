@@ -11,7 +11,9 @@ import Foundation
 enum Endpoint {
     case getUser
     case createUser
-    case testLeaderboard(String, String)
+    case testLeaderboard(category: String, difficulty: String)
+    case getTest(category: String, difficulty: String)
+    case getAllTests(username: String)
     
     var path: String {
         return NetworkConstants.baseURLString + _path
@@ -25,6 +27,10 @@ enum Endpoint {
             return "/users"
         case .testLeaderboard(let categoryName, let difficulty):
             return "/test/leaderboard/category/\(categoryName)/difficulty/\(difficulty)"
+        case .getTest(let categoryName, let difficulty):
+            return "/words/category/\(categoryName)/difficulty/\(difficulty)"
+        case .getAllTests(let username):
+            return "/test/leaderboard/username/\(username)"
         }
     }
 }

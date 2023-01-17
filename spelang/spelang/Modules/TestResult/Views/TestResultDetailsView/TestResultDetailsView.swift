@@ -35,6 +35,7 @@ final class TestResultDetailsView: UIView {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.setImage(Assets.closeIcon.image, for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 12.5, left: 12.5, bottom: 12.5, right: 12.5)
         
         return button
     }()
@@ -182,9 +183,9 @@ final class TestResultDetailsView: UIView {
         }
         
         closeTestResultDetailsButton.snp.remakeConstraints {
-            $0.top.equalToSuperview().offset(30)
-            $0.trailing.equalToSuperview().offset(-30)
-            $0.height.width.equalTo(20)
+            $0.top.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.width.equalTo(45)
         }
         
         testResultDetailsLabel.snp.remakeConstraints {
@@ -252,6 +253,7 @@ extension TestResultDetailsView {
     }
 }
 
+// MARK: - UITableViewDelegate
 
 extension TestResultDetailsView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

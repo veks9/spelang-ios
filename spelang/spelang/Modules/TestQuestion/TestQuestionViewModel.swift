@@ -21,11 +21,13 @@ final class TestQuestionViewModel {
 
     private let router: TestQuestionRouting
     private let context: TestQuestionContext
+    private let testService: TestServicing
     
-    private var questions: [TestQuestion]
+    private var cancellables: Set<AnyCancellable> = .init()
+    private var questions: [TestQuestion] = []
     private let currentIndexSubject: CurrentValueSubject<Int, Never> = .init(0)
     private let updateUISubject: PassthroughSubject<TestQuestionTopViewModel, Never> = .init()
-    private let testQuestionTopViewModel: TestQuestionTopViewModel
+    private var testQuestionTopViewModel: TestQuestionTopViewModel?
     
     private var currentIndexValue: Int {
         currentIndexSubject.value
@@ -33,24 +35,29 @@ final class TestQuestionViewModel {
     
     init(
         context: TestQuestionContext,
-        router: TestQuestionRouting
+        router: TestQuestionRouting,
+        testService: TestServicing = TestService()
     ) {
         self.context = context
         self.router = router
-        self.questions = context.questions
-        self.testQuestionTopViewModel = TestQuestionTopViewModel(
-            categoryName: context.categoryName,
-            word: questions[0].word,
-            numberOfQuestions: questions.count,
-            currentQuestionIndex: 0
-        )
+        self.testService = testService
     }
     
     private func nextQuestion() {
+        guard let testQuestionTopViewModel = testQuestionTopViewModel else { return }
         currentIndexSubject.send(currentIndexValue + 1)
         testQuestionTopViewModel.currentQuestionIndex = currentIndexValue
         testQuestionTopViewModel.word = questions[currentIndexValue].word
         updateUISubject.send(testQuestionTopViewModel)
+    }
+    
+    private func fillQuestions(from models: [Model.TestWord]) {
+        questions = models.map { word in
+            TestQuestion(
+                word: word.translations["hr"] ?? "",
+                translation: word.translations["en"] ?? ""
+            )
+        }
     }
 }
 
@@ -85,6 +92,27 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
     }
     
     func viewDidLoad() {
-        updateUISubject.send(testQuestionTopViewModel)
+        testService.getTestBy(categoryName: context.categoryName, difficulty: context.difficulty)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("🔴🔴🔴🔴\(error)🔴🔴🔴🔴")
+                }
+            }, receiveValue: { [weak self] words in
+                guard let self = self else { return }
+                self.fillQuestions(from: words)
+                let testQuestionTopViewModel = TestQuestionTopViewModel(
+                    categoryName: self.context.categoryName,
+                    word: self.questions[0].word,
+                    numberOfQuestions: self.questions.count,
+                    currentQuestionIndex: 0
+                )
+                self.testQuestionTopViewModel = testQuestionTopViewModel
+                self.updateUISubject.send(testQuestionTopViewModel)
+            })
+            .store(in: &cancellables)
     }
 }

@@ -1,18 +1,18 @@
 //
-//  TestLeaderboardRequest.swift
+//  GetTestByCategoryAndDifficulty.swift
 //  spelang
 //
-//  Created by Luka Bokarica on 16.01.2023..
+//  Created by Vedran Hernaus on 17.01.2023..
 //
 
 import Foundation
 import Alamofire
 
-struct TestLeaderboardRequest: APIRequest {
-    typealias ResponseType = [Model.TestLeaderboardPosition]
+struct GetTestByCategoryAndDifficulty: APIRequest {
+    typealias ResponseType = [Model.TestWord]
         
     var path: String {
-        return Endpoint.testLeaderboard(category: categoryName, difficulty: difficulty).path
+        return Endpoint.getTest(category: categoryName, difficulty: difficulty).path
     }
     
     var query: [String : String?]?
@@ -20,6 +20,6 @@ struct TestLeaderboardRequest: APIRequest {
     var requestBody: Data?
     var authenticationType: AuthenticationType = .none
     var contentType: ContentType? = .applicationJson
-    var difficulty: String
     var categoryName: String
+    var difficulty: String
 }

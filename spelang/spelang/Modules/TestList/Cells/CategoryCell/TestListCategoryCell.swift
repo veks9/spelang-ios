@@ -109,7 +109,7 @@ final class TestListCategoryCell: UITableViewCell {
 extension TestListCategoryCell {
     func updateUI(viewModel: TestListCategoryCellViewModel) {
         self.viewModel = viewModel
-        titleLabel.text = viewModel.title
+        titleLabel.text = viewModel.title.capitalized
         testsCollectionView.dataSource = viewModel.dataSource
         testsCollectionView.reloadData()
     }
@@ -119,7 +119,7 @@ extension TestListCategoryCell {
 
 extension TestListCategoryCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("🔴🔴🔴🔴🔴🔴🔴🔴")
+        viewModel?.cellTapped(at: indexPath)
     }
 }
 

@@ -28,16 +28,16 @@ private extension AppDelegate {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     
-//    func createRootViewController() -> UIViewController {
-//        let router = LoginRouter()
-//        let viewModel = LoginViewModel(router: router)
-//        let viewController = LoginViewController(viewModel: viewModel)
-//
-//        router.viewController = viewController
-//        router.delegate = viewController
-//
-//        return viewController
-//    }
+    func createRootViewController() -> UIViewController {
+        let router = LoginRouter()
+        let viewModel = LoginViewModel(router: router)
+        let viewController = LoginViewController(viewModel: viewModel)
+
+        router.viewController = viewController
+        router.delegate = viewController
+
+        return viewController
+    }
     
 //    func createRootViewController() -> UIViewController {
 //        let router = TestListRouter()
@@ -50,39 +50,39 @@ private extension AppDelegate {
 //        return viewController
 //    }
     
-    func createRootViewController() -> UIViewController {
-        let router = TestQuestionRouter()
-        let context = TestQuestionContext(
-            questions: [
-                TestQuestion(
-                    word: "mačka",
-                    translation: "cat",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "pas",
-                    translation: "dog",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "konj",
-                    translation: "horse",
-                    answer: nil
-                ),
-                TestQuestion(
-                    word: "slon",
-                    translation: "elephant",
-                    answer: nil
-                )
-            ],
-            categoryName: "Animals"
-        )
-        let viewModel = TestQuestionViewModel(context: context, router: router)
-        let viewController = TestQuestionViewController(viewModel: viewModel)
-
-        router.viewController = viewController
-        router.delegate = viewController
-
-        return viewController
-    }
+//    func createRootViewController() -> UIViewController {
+//        let router = TestQuestionRouter()
+//        let context = TestQuestionContext(
+//            questions: [
+//                TestQuestion(
+//                    word: "mačka",
+//                    translation: "cat",
+//                    answer: nil
+//                ),
+//                TestQuestion(
+//                    word: "pas",
+//                    translation: "dog",
+//                    answer: nil
+//                ),
+//                TestQuestion(
+//                    word: "konj",
+//                    translation: "horse",
+//                    answer: nil
+//                ),
+//                TestQuestion(
+//                    word: "slon",
+//                    translation: "elephant",
+//                    answer: nil
+//                )
+//            ],
+//            categoryName: "Animals"
+//        )
+//        let viewModel = TestQuestionViewModel(context: context, router: router)
+//        let viewController = TestQuestionViewController(viewModel: viewModel)
+//
+//        router.viewController = viewController
+//        router.delegate = viewController
+//
+//        return viewController
+//    }
 }

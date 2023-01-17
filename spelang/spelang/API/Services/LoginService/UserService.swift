@@ -9,8 +9,15 @@ import Foundation
 import Combine
 
 final class UserService: UserServicing {
+    
+    private var userDefaultsStorage: UserDefaultsStoring
+    
+    init(userDefaultsStorage: UserDefaultsStoring = UserDefaultsStorage.shared) {
+        self.userDefaultsStorage = userDefaultsStorage
+    }
+    
     func loginUser(username: String, pin: String) -> AnyPublisher<Model.User, Model.ErrorResponse> {
-        UserDefaultsStorage.shared.username = username
+        userDefaultsStorage.username = username
         return APIClient.shared.performRequest(LoginUserRequest(username: username, pin: pin)).eraseToAnyPublisher()
     }
 }

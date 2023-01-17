@@ -8,6 +8,6 @@
 import Foundation
 
 struct TestQuestionContext {
-    let questions: [TestQuestion]
     let categoryName: String
+    let difficulty: String
 }

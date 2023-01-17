@@ -9,35 +9,39 @@ import Foundation
 import Combine
 
 protocol TestLeaderboardViewModeling {
-    var dataSource: TestLeaderboardDataSource { get set }
-    var testCategoryName: String { get set }
-    var updateUI: AnyPublisher<Bool, Never> { get }
+    var updateUI: AnyPublisher<TestLeaderboardModel, Never> { get }
 
     func viewDidLoad()
+    func closeButtonTapped()
 }
 
 final class TestLeaderboardViewModel {
-    var dataSource: TestLeaderboardDataSource
-    var testCategoryName: String
     
     private let router: TestLeaderboardRouting
     private let context: TestLeaderboardContext
     private let testLeaderboardService: TestLeaderboardServicing
     
-    private let updateUISubject: PassthroughSubject<Bool, Never> = .init()
+    private let updateUISubject: PassthroughSubject<TestLeaderboardModel, Never> = .init()
     private var cancellables: Set<AnyCancellable> = .init()
+    
+    var dataSource: TestLeaderboardDataSource = TestLeaderboardDataSource()
     
     init(
         context: TestLeaderboardContext,
         router: TestLeaderboardRouting,
-        testLeaderboardService: TestLeaderboardServicing = TestLeaderboardService(),
-        dataSource: TestLeaderboardDataSource
+        testLeaderboardService: TestLeaderboardServicing = TestLeaderboardService()
     ) {
         self.context = context
         self.router = router
-        self.dataSource = dataSource
-        self.testCategoryName = context.testCategoryName
         self.testLeaderboardService = testLeaderboardService
+    }
+}
+
+// MARK: - TestLeaderboardViewModeling
+
+extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
+    var updateUI: AnyPublisher<TestLeaderboardModel, Never> {
+        updateUISubject.eraseToAnyPublisher()
     }
     
     func viewDidLoad() {
@@ -52,18 +56,18 @@ final class TestLeaderboardViewModel {
                 }
             }, receiveValue: { [weak self] positions in
                 guard let self = self else { return }
-                print("🟢🟢🟢🟢\(positions)🟢🟢🟢🟢")
+                self.dataSource.items = UserLeaderboardPositionCellViewModel.map(from: positions)
+                self.updateUISubject.send(
+                    TestLeaderboardModel(
+                        categoryName: self.context.testCategoryName,
+                        dataSource: self.dataSource
+                    )
+                )
             })
             .store(in: &cancellables)
-        updateUISubject.send(true)
-    }
-}
-
-// MARK: - TestLeaderboardViewModeling
-
-extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
-    var updateUI: AnyPublisher<Bool, Never> {
-        updateUISubject.eraseToAnyPublisher()
     }
     
+    func closeButtonTapped() {
+        router.dismiss()
+    }
 }

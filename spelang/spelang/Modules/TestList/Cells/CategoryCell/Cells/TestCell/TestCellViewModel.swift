@@ -9,13 +9,24 @@ import Foundation
 
 final class TestCellViewModel {
     let title: String
-    let leaderboardPosition: Int?
+    let leaderboardPosition: String?
     
     init(
         title: String,
-        leaderboardPosition: Int?
+        leaderboardPosition: String?
     ) {
         self.title = title
         self.leaderboardPosition = leaderboardPosition
+    }
+    
+    static func map(from categories: [Model.Category], isLeaderboard: Bool) -> [TestsCellType] {
+        categories.map { category in
+                .test(
+                    TestCellViewModel(
+                        title: category.name,
+                        leaderboardPosition: isLeaderboard ? category.rank : nil
+                    )
+                )
+        }
     }
 }

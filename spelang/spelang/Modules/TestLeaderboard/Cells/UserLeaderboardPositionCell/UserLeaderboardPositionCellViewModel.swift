@@ -17,4 +17,16 @@ final class UserLeaderboardPositionCellViewModel {
         self.username = username
         self.score = score
     }
+    
+    static func map(from models: [Model.TestLeaderboardPosition]) -> [TestLeaderboardCellType] {
+        models.enumerated().map { (index, position) in
+                .leaderboardUser(
+                    UserLeaderboardPositionCellViewModel(
+                        position: index + 1,
+                        username: position.username,
+                        score: position.score.toString()
+                    )
+                )
+        }
+    }
 }
