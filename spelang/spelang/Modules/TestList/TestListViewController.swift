@@ -46,6 +46,40 @@ final class TestListViewController: UIViewController {
         return label
     }()
     
+    private lazy var logoutLabel: UILabel = {
+        let label = UILabel()
+        label.set(textColor: .white, font: .systemFont(ofSize: 20, weight: .bold))
+        label.text = "logout_title".localized()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private lazy var logoutImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = Assets.logoutIcon.image
+        
+        return imageView
+    }()
+    
+    private lazy var logoutContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.isUserInteractionEnabled = false
+        
+        return view
+    }()
+    
+    private lazy var logoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .clear
+        
+        return button
+    }()
+    
     private lazy var seeLeaderboardButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -104,6 +138,10 @@ final class TestListViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(backgroundImageView)
         view.addSubview(titleContainerView)
+        view.addSubview(logoutContainerView)
+        logoutContainerView.addSubview(logoutLabel)
+        logoutContainerView.addSubview(logoutImageView)
+        view.addSubview(logoutButton)
         titleContainerView.addSubview(titleLabel)
         view.addSubview(seeLeaderboardButton)
         view.addSubview(testsTableView)
@@ -119,6 +157,24 @@ final class TestListViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(70)
             $0.width.equalTo(500)
+        }
+        
+        logoutContainerView.snp.remakeConstraints {
+            $0.centerY.equalTo(titleContainerView)
+            $0.trailing.equalToSuperview().offset(-20)
+        }
+        
+        logoutLabel.snp.remakeConstraints {
+            $0.top.bottom.leading.equalToSuperview()
+            $0.trailing.equalTo(logoutImageView.snp.leading)
+        }
+        
+        logoutImageView.snp.remakeConstraints {
+            $0.top.bottom.trailing.equalToSuperview()
+        }
+        
+        logoutButton.snp.remakeConstraints {
+            $0.edges.equalTo(logoutContainerView)
         }
         
         titleLabel.snp.remakeConstraints {
@@ -152,6 +208,11 @@ final class TestListViewController: UIViewController {
         seeLeaderboardButton.onTap { [weak self] in
             guard let self = self else { return }
             self.viewModel.seeLeaderboardButtonTapped()
+        }
+        
+        logoutButton.onTap { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.logoutButtonTapped()
         }
     }
 }
