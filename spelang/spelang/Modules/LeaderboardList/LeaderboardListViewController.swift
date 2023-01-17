@@ -1,17 +1,17 @@
 //
-//  TestListViewController.swift
+//  LeaderboardListViewController.swift
 //  spelang
 //
-//  Created by Vedran Hernaus on 13.01.2023..
+//  Created by Luka Bokarica on 17.01.2023..
 //
 
 import UIKit
 import SnapKit
 import Combine
 
-final class TestListViewController: UIViewController {
+final class LeaderboardListViewController: UIViewController {
     
-    private var viewModel: TestListViewModeling
+    private var viewModel: LeaderboardListViewModeling
     private var cancellables: Set<AnyCancellable> = .init()
     private var dataSource: TestListDataSource?
     
@@ -38,7 +38,7 @@ final class TestListViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .bold))
-        label.text = "test_list_title".localized()
+        label.text = "leaderboards_list_title".localized()
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
         label.textAlignment = .center
@@ -46,17 +46,7 @@ final class TestListViewController: UIViewController {
         return label
     }()
     
-    private lazy var seeLeaderboardButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .white
-        button.setTitle("test_list_see_leaderboard_button_title".localized(), for: .normal)
-        button.titleLabel?.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .semibold))
-        button.backgroundColor = .clear
-        
-        return button
-    }()
-    
-    private lazy var testsTableView: UITableView = {
+    private lazy var leaderboardsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
         tableView.register(TestListCategoryCell.self, forCellReuseIdentifier: TestListCategoryCell.identity)
@@ -73,7 +63,7 @@ final class TestListViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    init(viewModel: TestListViewModeling) {
+    init(viewModel: LeaderboardListViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,24 +79,14 @@ final class TestListViewController: UIViewController {
         setConstraints()
         observe()
         viewModel.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        styleView()
     }
     
     private func addSubviews() {
         view.addSubview(backgroundImageView)
         view.addSubview(titleContainerView)
         titleContainerView.addSubview(titleLabel)
-        view.addSubview(seeLeaderboardButton)
-        view.addSubview(testsTableView)
+        view.addSubview(leaderboardsTableView)
     }
     
     private func setConstraints() {
@@ -126,14 +106,8 @@ final class TestListViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         
-        seeLeaderboardButton.snp.remakeConstraints {
-            $0.top.equalTo(titleContainerView.snp.bottom)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(70)
-        }
-        
-        testsTableView.snp.remakeConstraints {
-            $0.top.equalTo(seeLeaderboardButton.snp.bottom).offset(20)
+        leaderboardsTableView.snp.remakeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(90)
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.bottom.equalToSuperview()
         }
@@ -144,21 +118,20 @@ final class TestListViewController: UIViewController {
             .sink(receiveValue: { [weak self] dataSource in
                 guard let self = self else { return }
                 self.dataSource = dataSource
-                self.testsTableView.dataSource = dataSource
-                self.testsTableView.reloadData()
+                self.leaderboardsTableView.dataSource = dataSource
+                self.leaderboardsTableView.reloadData()
             })
             .store(in: &cancellables)
-        
-        seeLeaderboardButton.onTap { [weak self] in
-            guard let self = self else { return }
-            self.viewModel.seeLeaderboardButtonTapped()
-        }
+    }
+    
+    private func styleView() {
+        self.navigationController?.navigationBar.tintColor = .white;
     }
 }
 
 // MARK: - UITableViewDelegate
 
-extension TestListViewController: UITableViewDelegate {
+extension LeaderboardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let dataSource = dataSource else { return 0 }
         switch dataSource.items[indexPath.row] {

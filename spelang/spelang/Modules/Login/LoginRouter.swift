@@ -25,9 +25,8 @@ final class LoginRouter: LoginRouting {
         let router = TestListRouter()
         let viewModel = TestListViewModel(router: router)
         let viewController = TestListViewController(viewModel: viewModel)
-        
         router.viewController = viewController
-        router.delegate = viewController
+        
         self.viewController?.navigationController?.pushViewController(viewController, animated: true)
     }
 }
