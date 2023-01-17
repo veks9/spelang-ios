@@ -45,7 +45,7 @@ extension TestResultViewModel: TestResultViewModeling {
     }
     
     func seeTestLeaderboardTapped() {
-        router.navigateToTestLeaderboard(for: context.categoryName)
+        router.navigateToTestLeaderboard(categoryName: context.categoryName, difficulty: context.difficulty)
     }
     
     func viewDidLoad() {

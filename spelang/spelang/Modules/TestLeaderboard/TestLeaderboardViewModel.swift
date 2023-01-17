@@ -55,7 +55,7 @@ extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
     
     func viewDidLoad() {
         isLoadingSubject.send(true)
-        testLeaderboardService.fetchTestLeaderboard(difficulty: "easy", categoryName: context.testCategoryName.lowercased())
+        testLeaderboardService.fetchTestLeaderboard(difficulty: context.difficulty, categoryName: context.categoryName.lowercased())
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
@@ -73,7 +73,7 @@ extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
                 self.isLoadingSubject.send(false)
                 self.updateUISubject.send(
                     TestLeaderboardModel(
-                        categoryName: self.context.testCategoryName,
+                        categoryName: self.context.categoryName,
                         dataSource: self.dataSource
                     )
                 )

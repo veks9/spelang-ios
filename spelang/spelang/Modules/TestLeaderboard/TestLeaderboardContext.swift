@@ -8,5 +8,6 @@
 import Foundation
 
 struct TestLeaderboardContext {
-    let testCategoryName: String
+    let categoryName: String
+    let difficulty: String
 }

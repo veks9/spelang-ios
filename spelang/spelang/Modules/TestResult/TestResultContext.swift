@@ -11,4 +11,5 @@ struct TestResultContext {
     let questions: [TestQuestion]
     let categoryName: String
     let rank: Int
+    let difficulty: String
 }

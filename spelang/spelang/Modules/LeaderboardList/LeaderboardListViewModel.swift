@@ -73,6 +73,6 @@ extension LeaderboardListViewModel: LeaderboardListViewModeling {
     }
     
     func leaderboardTapped(categoryName: String, difficulty: String) {
-        router.navigateToTestLeaderboard(for: categoryName)
+        router.navigateToTestLeaderboard(categoryName: categoryName, difficulty: difficulty)
     }
 }

@@ -84,7 +84,12 @@ final class TestQuestionViewModel {
             }
         }, receiveValue: { [weak self] result in
             guard let self = self else { return }
-            self.router.navigateToTestResult(questions: self.questions, categoryName: result.category, rank: result.rank)
+            self.router.navigateToTestResult(
+                questions: self.questions,
+                categoryName: result.category,
+                rank: result.rank,
+                difficulty: result.difficulty
+            )
         })
         .store(in: &cancellables)
     }
@@ -112,7 +117,6 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
     func processAnswer(answer: String?) {
         questions[currentIndexValue].answer = answer ?? nil
         if currentIndexValue == questions.count - 1 {
-            // service send to backend
             createTest()
         } else {
             nextQuestion()
