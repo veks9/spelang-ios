@@ -12,7 +12,7 @@ protocol TestQuestionRouting {
     var viewController: TestQuestionViewController? { get set }
     var delegate: TestQuestionRouterDelegate? { get set }
     
-    func navigateToTestResult(questions: [TestQuestion], categoryName: String)
+    func navigateToTestResult(questions: [TestQuestion], categoryName: String, rank: Int)
 }
 
 protocol TestQuestionRouterDelegate: AnyObject {}
@@ -21,9 +21,9 @@ final class TestQuestionRouter: TestQuestionRouting {
     weak var viewController: TestQuestionViewController?
     weak var delegate: TestQuestionRouterDelegate?
     
-    func navigateToTestResult(questions: [TestQuestion], categoryName: String) {
+    func navigateToTestResult(questions: [TestQuestion], categoryName: String, rank: Int) {
         let router = TestResultRouter()
-        let context = TestResultContext(questions: questions, categoryName: categoryName)
+        let context = TestResultContext(questions: questions, categoryName: categoryName, rank: rank)
         let viewModel = TestResultViewModel(context: context, router: router)
         let viewController = TestResultViewController(viewModel: viewModel)
         router.viewController = viewController

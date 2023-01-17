@@ -1,5 +1,5 @@
 //
-//  TestLeaderboard.swift
+//  TestLeaderboards.swift
 //  spelang
 //
 //  Created by Vedran Hernaus on 17.01.2023..
@@ -8,7 +8,7 @@
 import Foundation
 
 extension Model {
-    struct TestLeaderboard: Codable, Hashable {
+    struct TestLeaderboards: Codable, Hashable {
         let leaderboards: [Test]
     }
     

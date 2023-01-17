@@ -8,9 +8,9 @@
 import Foundation
 
 struct LeaderboardListContext {
-    let leaderboard: Model.TestLeaderboard
+    let leaderboard: Model.TestLeaderboards
     
-    init(leaderboard: Model.TestLeaderboard) {
+    init(leaderboard: Model.TestLeaderboards) {
         self.leaderboard = leaderboard
     }
 }

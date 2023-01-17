@@ -99,7 +99,6 @@ final class TestLeaderboardViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
         tableView.register(UserLeaderboardPositionCell.self, forCellReuseIdentifier: UserLeaderboardPositionCell.identity)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
@@ -110,7 +109,7 @@ final class TestLeaderboardViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var closeTestLeaderboardButton: UIButton = {
+    private lazy var dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.setImage(Assets.closeIcon.image, for: .normal)
@@ -118,7 +117,6 @@ final class TestLeaderboardViewController: UIViewController {
         
         return button
     }()
-    
     
     // MARK: - Lifecycle
     
@@ -143,7 +141,7 @@ final class TestLeaderboardViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(backgroundImageView)
-        view.addSubview(closeTestLeaderboardButton)
+        view.addSubview(dismissButton)
         view.addSubview(leaderboardTitleContainerView)
         leaderboardTitleContainerView.addSubview(leaderboardTitleStackView)
         leaderboardTitleStackView.addArrangedSubview(leaderboardTitleLabel)
@@ -160,7 +158,7 @@ final class TestLeaderboardViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        closeTestLeaderboardButton.snp.remakeConstraints {
+        dismissButton.snp.remakeConstraints {
             $0.top.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
             $0.height.width.equalTo(45)
@@ -200,7 +198,7 @@ final class TestLeaderboardViewController: UIViewController {
         
         tableView.snp.remakeConstraints {
             $0.top.equalTo(testCategoryContainerView.snp.bottom).offset(40)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().offset(-20)
         }
     }
@@ -215,17 +213,9 @@ final class TestLeaderboardViewController: UIViewController {
             })
             .store(in: &cancellables)
         
-        closeTestLeaderboardButton.onTap { [weak self] in
+        dismissButton.onTap { [weak self] in
             guard let self = self else { return }
             self.viewModel.closeButtonTapped()
         }
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension TestLeaderboardViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
     }
 }

@@ -22,6 +22,7 @@ final class TestQuestionViewModel {
     private let router: TestQuestionRouting
     private let context: TestQuestionContext
     private let testService: TestServicing
+    private let userDefaultsStorage: UserDefaultsStoring
     
     private var cancellables: Set<AnyCancellable> = .init()
     private var questions: [TestQuestion] = []
@@ -36,11 +37,13 @@ final class TestQuestionViewModel {
     init(
         context: TestQuestionContext,
         router: TestQuestionRouting,
-        testService: TestServicing = TestService()
+        testService: TestServicing = TestService(),
+        userDefaultsStorage: UserDefaultsStoring = UserDefaultsStorage.shared
     ) {
         self.context = context
         self.router = router
         self.testService = testService
+        self.userDefaultsStorage = userDefaultsStorage
     }
     
     private func nextQuestion() {
@@ -58,6 +61,30 @@ final class TestQuestionViewModel {
                 translation: word.translations["en"] ?? ""
             )
         }
+    }
+    
+    private func createTest() {
+        testService.createTest(
+            model: Model.CreateTestBody(
+                category: context.categoryName,
+                difficulty: context.difficulty,
+                username: userDefaultsStorage.username,
+                score: questions.filter { $0.isAnswerCorrect }.count
+            )
+        )
+        .sink(receiveCompletion: { [weak self] completion in
+            guard let self = self else { return }
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                print("🔴🔴🔴🔴\(error)🔴🔴🔴🔴")
+            }
+        }, receiveValue: { [weak self] result in
+            guard let self = self else { return }
+            self.router.navigateToTestResult(questions: self.questions, categoryName: result.category, rank: result.rank)
+        })
+        .store(in: &cancellables)
     }
 }
 
@@ -80,8 +107,7 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
         questions[currentIndexValue].answer = answer ?? nil
         if currentIndexValue == questions.count - 1 {
             // service send to backend
-            // router Navigate to
-            router.navigateToTestResult(questions: questions, categoryName: context.categoryName)
+            createTest()
         } else {
             nextQuestion()
         }

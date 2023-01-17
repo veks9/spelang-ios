@@ -20,6 +20,7 @@ final class TestLeaderboardViewModel {
     private let router: TestLeaderboardRouting
     private let context: TestLeaderboardContext
     private let testLeaderboardService: TestLeaderboardServicing
+    private let userDefaultsStorage: UserDefaultsStoring
     
     private let updateUISubject: PassthroughSubject<TestLeaderboardModel, Never> = .init()
     private var cancellables: Set<AnyCancellable> = .init()
@@ -29,11 +30,13 @@ final class TestLeaderboardViewModel {
     init(
         context: TestLeaderboardContext,
         router: TestLeaderboardRouting,
-        testLeaderboardService: TestLeaderboardServicing = TestLeaderboardService()
+        testLeaderboardService: TestLeaderboardServicing = TestLeaderboardService(),
+        userDefaultsStorage: UserDefaultsStoring = UserDefaultsStorage.shared
     ) {
         self.context = context
         self.router = router
         self.testLeaderboardService = testLeaderboardService
+        self.userDefaultsStorage = userDefaultsStorage
     }
 }
 
@@ -56,7 +59,10 @@ extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
                 }
             }, receiveValue: { [weak self] positions in
                 guard let self = self else { return }
-                self.dataSource.items = UserLeaderboardPositionCellViewModel.map(from: positions)
+                self.dataSource.items = UserLeaderboardPositionCellViewModel.map(
+                    from: positions,
+                    currentUserUsername: self.userDefaultsStorage.username
+                )
                 self.updateUISubject.send(
                     TestLeaderboardModel(
                         categoryName: self.context.testCategoryName,

@@ -13,7 +13,7 @@ protocol TestListRouting {
     var delegate: TestListRouterDelegate? { get set }
     
     func navigateToTestQuestion(categoryName: String, difficulty: String)
-    func navigateToLeaderBoards(with context: Model.TestLeaderboard)
+    func navigateToLeaderBoards(with context: Model.TestLeaderboards)
 }
 
 protocol TestListRouterDelegate: AnyObject {}
@@ -34,7 +34,7 @@ final class TestListRouter: TestListRouting {
         self.viewController?.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func navigateToLeaderBoards(with leaderboard: Model.TestLeaderboard) {
+    func navigateToLeaderBoards(with leaderboard: Model.TestLeaderboards) {
         let router = LeaderboardListRouter()
         let context = LeaderboardListContext(leaderboard: leaderboard)
         let viewModel = LeaderboardListViewModel(router: router, context: context)

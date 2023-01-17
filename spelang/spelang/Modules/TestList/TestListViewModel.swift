@@ -26,7 +26,7 @@ final class TestListViewModel {
     private let updateUISubject: PassthroughSubject<TestListDataSource, Never> = .init()
     
     var dataSource = TestListDataSource()
-    var leaderboardsContext: Model.TestLeaderboard?
+    var leaderboardsContext: Model.TestLeaderboards?
     
     init(
         router: TestListRouting,
@@ -82,7 +82,6 @@ extension TestListViewModel: TestListViewModeling {
                 self.updateUISubject.send(self.dataSource)
             })
             .store(in: &cancellables)
-        
     }
     
     func seeLeaderboardButtonTapped() {
