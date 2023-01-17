@@ -27,7 +27,6 @@ final class TestResultRouter: TestResultRouting {
         let viewModel = TestListViewModel(router: router)
         let viewController = TestListViewController(viewModel: viewModel)
         router.viewController = viewController
-        router.delegate = viewController
         
         self.viewController?.navigationController?.replaceViewControllersStack(with: [viewController])
     }

@@ -26,6 +26,7 @@ final class TestListViewModel {
     private let updateUISubject: PassthroughSubject<TestListDataSource, Never> = .init()
     
     var dataSource = TestListDataSource()
+    var leaderboardsContext: Model.TestLeaderboards?
     
     init(
         router: TestListRouting,
@@ -63,8 +64,7 @@ extension TestListViewModel: TestListViewModeling {
     
     func viewDidLoad() {
         testService.getAllTests(username: userDefaultsStorage.username)
-            .sink(receiveCompletion: { [weak self] completion in
-                guard let self = self else { return }
+            .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
                     break
@@ -73,6 +73,7 @@ extension TestListViewModel: TestListViewModeling {
                 }
             }, receiveValue: { [weak self] model in
                 guard let self = self else { return }
+                self.leaderboardsContext = model
                 self.dataSource.items = TestListCategoryCellViewModel.map(
                     from: model.leaderboards,
                     isLeaderboard: false
@@ -84,7 +85,8 @@ extension TestListViewModel: TestListViewModeling {
     }
     
     func seeLeaderboardButtonTapped() {
-        router.navigateToLeaderBoards()
+        guard let leaderboardsContext = leaderboardsContext else { return }
+        router.navigateToLeaderBoards(with: leaderboardsContext)
     }
     
     func testTapped(categoryName: String, difficulty: String) {

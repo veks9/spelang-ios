@@ -31,7 +31,7 @@ final class UserLeaderboardPositionCellViewModel {
                     UserLeaderboardPositionCellViewModel(
                         position: index + 1,
                         username: position.username,
-                        score: position.score.toString(),
+                        score: position.score,
                         isCurrentUser: position.username == currentUserUsername
                     )
                 )

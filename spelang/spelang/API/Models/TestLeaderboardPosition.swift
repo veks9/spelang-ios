@@ -10,7 +10,7 @@ import Foundation
 extension Model {
     struct TestLeaderboardPosition: Codable, Hashable {
         let username: String
-        let score: Double
+        let score: String
         let category: String
         let difficulty: String
     }
