@@ -15,13 +15,14 @@ protocol TestListViewModeling {
     func viewDidLoad()
     func seeLeaderboardButtonTapped()
     func testTapped(categoryName: String, difficulty: String)
+    func logoutButtonTapped()
 }
 
 final class TestListViewModel {
 
     private let router: TestListRouting
     private let testService: TestServicing
-    private let userDefaultsStorage: UserDefaultsStoring
+    private var userDefaultsStorage: UserDefaultsStoring
     
     private var cancellables: Set<AnyCancellable> = .init()
     private let updateUISubject: PassthroughSubject<TestListDataSource, Never> = .init()
@@ -99,5 +100,10 @@ extension TestListViewModel: TestListViewModeling {
     
     func testTapped(categoryName: String, difficulty: String) {
         router.navigateToTestQuestion(categoryName: categoryName, difficulty: difficulty)
+    }
+    
+    func logoutButtonTapped() {
+        userDefaultsStorage.username = ""
+        router.navigateToLogin()
     }
 }

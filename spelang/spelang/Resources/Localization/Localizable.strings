@@ -36,3 +36,4 @@
 // MARK: - TestList
 "test_list_see_leaderboard_button_title" = "See leaderboards >";
 "test_list_title" = "Tests";
+"logout_title" = "Logout";

@@ -14,6 +14,7 @@ protocol TestListRouting {
     
     func navigateToTestQuestion(categoryName: String, difficulty: String)
     func navigateToLeaderBoards(with context: Model.TestLeaderboards)
+    func navigateToLogin()
 }
 
 protocol TestListRouterDelegate: AnyObject {}
@@ -42,5 +43,16 @@ final class TestListRouter: TestListRouting {
         router.viewController = viewController
         
         self.viewController?.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
+    func navigateToLogin() {
+        let router = LoginRouter()
+        let viewModel = LoginViewModel(router: router)
+        let viewController = LoginViewController(viewModel: viewModel)
+
+        router.viewController = viewController
+        router.delegate = viewController
+        
+        self.viewController?.navigationController?.replaceViewControllersStack(with: [viewController], animated: false)
     }
 }
