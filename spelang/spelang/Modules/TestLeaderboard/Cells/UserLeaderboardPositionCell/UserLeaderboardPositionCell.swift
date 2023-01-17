@@ -18,7 +18,6 @@ final class UserLeaderboardPositionCell: UITableViewCell {
         let view = UIStackView()
         view.axis = .horizontal
         view.alignment = .center
-        view.distribution = .fillProportionally
         view.backgroundColor = .clear
         
         return view
@@ -27,7 +26,9 @@ final class UserLeaderboardPositionCell: UITableViewCell {
     private lazy var leaderboardPositionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
+        label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .regular))
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.8
         
         return label
     }()
@@ -35,7 +36,9 @@ final class UserLeaderboardPositionCell: UITableViewCell {
     private lazy var usernameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
+        label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .regular))
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.8
         
         return label
     }()
@@ -43,17 +46,9 @@ final class UserLeaderboardPositionCell: UITableViewCell {
     private lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.set(textColor: .white, font: .systemFont(ofSize: 22, weight: .regular))
+        label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .regular))
         
         return label
-    }()
-    
-    private lazy var separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-//        view.backgroundColor = .appBackgroundNavyBlue
-        
-        return view
     }()
     
     
@@ -78,27 +73,34 @@ final class UserLeaderboardPositionCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        contentView.addSubview(stackView)
-        stackView.addArrangedSubview(leaderboardPositionLabel)
-        stackView.addArrangedSubview(usernameLabel)
-        stackView.addArrangedSubview(scoreLabel)
-        contentView.addSubview(separatorView)
+        contentView.addSubview(leaderboardPositionLabel)
+        contentView.addSubview(usernameLabel)
+        contentView.addSubview(scoreLabel)
     }
     
     private func setConstraints() {
-        stackView.snp.remakeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(25)
-        }
-        
         leaderboardPositionLabel.snp.remakeConstraints {
-            $0.width.equalTo(50)
+            $0.top.bottom.equalToSuperview().inset(10)
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(40)
         }
         
-        separatorView.snp.remakeConstraints {
-            $0.height.equalTo(3)
-            $0.bottom.equalToSuperview().offset(-10)
+        usernameLabel.snp.remakeConstraints {
+            $0.top.bottom.equalToSuperview().inset(10)
+            $0.leading.equalTo(leaderboardPositionLabel.snp.trailing).offset(5)
+            $0.trailing.equalTo(scoreLabel.snp.leading)
         }
+        
+        scoreLabel.snp.remakeConstraints {
+            $0.top.bottom.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview()
+        }
+    }
+    
+    private func styleLabels(isCurrentUser: Bool) {
+        leaderboardPositionLabel.set(textColor: isCurrentUser ? .appYellow : .white, font: .systemFont(ofSize: 30, weight: .semibold))
+        usernameLabel.set(textColor: isCurrentUser ? .appYellow : .white, font: .systemFont(ofSize: 30, weight: .semibold))
+        scoreLabel.set(textColor: isCurrentUser ? .appYellow : .white, font: .systemFont(ofSize: 30, weight: .semibold))
     }
 }
 
@@ -110,6 +112,7 @@ extension UserLeaderboardPositionCell {
         leaderboardPositionLabel.text = "#\(viewModel.position)"
         usernameLabel.text = viewModel.username
         scoreLabel.text = viewModel.score
+        styleLabels(isCurrentUser: viewModel.isCurrentUser)
     }
 }
 

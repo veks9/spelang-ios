@@ -76,6 +76,9 @@ extension UIColor {
     
     /// #5F666C
     static let appGray = UIColor(rgb: 0x5F666C)
+    
+    /// #FFC905
+    static let appYellow = UIColor(rgb: 0xFFC905)
 }
 
 // MARK: - Light/Dark mode support

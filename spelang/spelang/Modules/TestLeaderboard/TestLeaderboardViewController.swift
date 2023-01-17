@@ -99,7 +99,6 @@ final class TestLeaderboardViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
         tableView.register(UserLeaderboardPositionCell.self, forCellReuseIdentifier: UserLeaderboardPositionCell.identity)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
@@ -199,7 +198,7 @@ final class TestLeaderboardViewController: UIViewController {
         
         tableView.snp.remakeConstraints {
             $0.top.equalTo(testCategoryContainerView.snp.bottom).offset(40)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().offset(-20)
         }
     }
@@ -218,13 +217,5 @@ final class TestLeaderboardViewController: UIViewController {
             guard let self = self else { return }
             self.viewModel.closeButtonTapped()
         }
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension TestLeaderboardViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
     }
 }
