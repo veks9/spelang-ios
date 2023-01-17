@@ -10,6 +10,7 @@ import Combine
 
 protocol TestLeaderboardViewModeling {
     var updateUI: AnyPublisher<TestLeaderboardModel, Never> { get }
+    var isLoading: AnyPublisher<Bool, Never> { get }
 
     func viewDidLoad()
     func closeButtonTapped()
@@ -23,6 +24,7 @@ final class TestLeaderboardViewModel {
     private let userDefaultsStorage: UserDefaultsStoring
     
     private let updateUISubject: PassthroughSubject<TestLeaderboardModel, Never> = .init()
+    private let isLoadingSubject: PassthroughSubject<Bool, Never> = .init()
     private var cancellables: Set<AnyCancellable> = .init()
     
     var dataSource: TestLeaderboardDataSource = TestLeaderboardDataSource()
@@ -47,7 +49,12 @@ extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
         updateUISubject.eraseToAnyPublisher()
     }
     
+    var isLoading: AnyPublisher<Bool, Never> {
+        isLoadingSubject.eraseToAnyPublisher()
+    }
+    
     func viewDidLoad() {
+        isLoadingSubject.send(true)
         testLeaderboardService.fetchTestLeaderboard(difficulty: "easy", categoryName: context.testCategoryName.lowercased())
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
@@ -63,6 +70,7 @@ extension TestLeaderboardViewModel: TestLeaderboardViewModeling {
                     from: positions,
                     currentUserUsername: self.userDefaultsStorage.username
                 )
+                self.isLoadingSubject.send(false)
                 self.updateUISubject.send(
                     TestLeaderboardModel(
                         categoryName: self.context.testCategoryName,

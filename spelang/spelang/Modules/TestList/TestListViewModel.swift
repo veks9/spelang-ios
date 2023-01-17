@@ -10,6 +10,7 @@ import Combine
 
 protocol TestListViewModeling {
     var updateUI: AnyPublisher<TestListDataSource, Never> { get }
+    var isLoading: AnyPublisher<Bool, Never> { get }
     
     func viewDidLoad()
     func seeLeaderboardButtonTapped()
@@ -24,6 +25,7 @@ final class TestListViewModel {
     
     private var cancellables: Set<AnyCancellable> = .init()
     private let updateUISubject: PassthroughSubject<TestListDataSource, Never> = .init()
+    private let isLoadingSubject: PassthroughSubject<Bool, Never> = .init()
     
     var dataSource = TestListDataSource()
     var leaderboardsContext: Model.TestLeaderboards?
@@ -62,7 +64,12 @@ extension TestListViewModel: TestListViewModeling {
         updateUISubject.eraseToAnyPublisher()
     }
     
+    var isLoading: AnyPublisher<Bool, Never> {
+        isLoadingSubject.eraseToAnyPublisher()
+    }
+    
     func viewDidLoad() {
+        isLoadingSubject.send(true)
         testService.getAllTests(username: userDefaultsStorage.username)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -79,6 +86,7 @@ extension TestListViewModel: TestListViewModeling {
                     isLeaderboard: false
                 )
                 self.observeCells()
+                self.isLoadingSubject.send(false)
                 self.updateUISubject.send(self.dataSource)
             })
             .store(in: &cancellables)

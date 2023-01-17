@@ -16,6 +16,10 @@ final class TestLeaderboardViewController: UIViewController {
 
     // MARK: - Views
     
+    private lazy var tableViewSpinnerView: SpinnerView = .init(backgroundColor: .clear)
+    
+    private lazy var categoryContainerSpinnerView: SpinnerView = .init(backgroundColor: .clear)
+    
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -150,7 +154,9 @@ final class TestLeaderboardViewController: UIViewController {
         leaderboardTableContainerView.addSubview(blurEffectView)
         leaderboardTableContainerView.addSubview(testCategoryContainerView)
         testCategoryContainerView.addSubview(testCategoryLabel)
+        testCategoryContainerView.addSubview(categoryContainerSpinnerView)
         leaderboardTableContainerView.addSubview(tableView)
+        leaderboardTableContainerView.addSubview(tableViewSpinnerView)
     }
     
     private func setConstraints() {
@@ -169,6 +175,10 @@ final class TestLeaderboardViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(400)
             $0.height.equalTo(70)
+        }
+        
+        categoryContainerSpinnerView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         leaderboardTitleStackView.snp.remakeConstraints {
@@ -201,13 +211,30 @@ final class TestLeaderboardViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().offset(-20)
         }
+        
+        tableViewSpinnerView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     private func observe() {
+        viewModel.isLoading
+            .sink(receiveValue: { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.categoryContainerSpinnerView.showSpinner()
+                    self.tableViewSpinnerView.showSpinner()
+                } else {
+                    self.categoryContainerSpinnerView.hideSpinner()
+                    self.tableViewSpinnerView.hideSpinner()
+                }
+            })
+            .store(in: &cancellables)
+        
         viewModel.updateUI
             .sink(receiveValue: { [weak self] model in
                 guard let self = self else { return }
-                self.testCategoryLabel.text = model.categoryName
+                self.testCategoryLabel.text = model.categoryName.capitalized
                 self.tableView.dataSource = model.dataSource
                 self.tableView.reloadData()
             })

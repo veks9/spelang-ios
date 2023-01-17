@@ -17,6 +17,8 @@ final class TestListViewController: UIViewController {
     
     // MARK: - Views
     
+    private lazy var tableViewSpinnerView: SpinnerView = .init(backgroundColor: .clear)
+    
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -107,6 +109,7 @@ final class TestListViewController: UIViewController {
         titleContainerView.addSubview(titleLabel)
         view.addSubview(seeLeaderboardButton)
         view.addSubview(testsTableView)
+        view.addSubview(tableViewSpinnerView)
     }
     
     private func setConstraints() {
@@ -137,9 +140,25 @@ final class TestListViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.bottom.equalToSuperview()
         }
+        
+        tableViewSpinnerView.snp.remakeConstraints {
+            $0.top.equalTo(seeLeaderboardButton.snp.bottom).offset(20)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     private func observe() {
+        viewModel.isLoading
+            .sink(receiveValue: { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.tableViewSpinnerView.showSpinner()
+                } else {
+                    self.tableViewSpinnerView.hideSpinner()
+                }
+            })
+            .store(in: &cancellables)
+        
         viewModel.updateUI
             .sink(receiveValue: { [weak self] dataSource in
                 guard let self = self else { return }

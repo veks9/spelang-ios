@@ -10,11 +10,10 @@ import UIKit
 
 enum TestLeaderboardCellType{
     case leaderboardUser(UserLeaderboardPositionCellViewModel)
-    case loading
 }
 
 final class TestLeaderboardDataSource: NSObject {
-    var items: [TestLeaderboardCellType] = [.loading]
+    var items: [TestLeaderboardCellType] = []
 }
 
 extension TestLeaderboardDataSource: UITableViewDataSource {
@@ -27,10 +26,6 @@ extension TestLeaderboardDataSource: UITableViewDataSource {
         case .leaderboardUser(let cellViewModel):
             let cell: UserLeaderboardPositionCell = tableView.dequeueCellAtIndexPath(indexPath: indexPath)
             cell.updateUI(with: cellViewModel)
-            
-            return cell
-        case .loading:
-            let cell: LoadingCell = tableView.dequeueCellAtIndexPath(indexPath: indexPath)
             
             return cell
         }

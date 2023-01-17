@@ -11,6 +11,7 @@ import Combine
 protocol TestQuestionViewModeling {
     var updateUI: AnyPublisher<TestQuestionTopViewModel, Never> { get }
     var questionNumberText: AnyPublisher<String, Never> { get }
+    var isLoading: AnyPublisher<Bool, Never> { get }
     
     func processAnswer(answer: String?)
     func skipButtonTapped()
@@ -28,6 +29,7 @@ final class TestQuestionViewModel {
     private var questions: [TestQuestion] = []
     private let currentIndexSubject: CurrentValueSubject<Int, Never> = .init(0)
     private let updateUISubject: PassthroughSubject<TestQuestionTopViewModel, Never> = .init()
+    private let isLoadingSubject: PassthroughSubject<Bool, Never> = .init()
     private var testQuestionTopViewModel: TestQuestionTopViewModel?
     
     private var currentIndexValue: Int {
@@ -103,6 +105,10 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
             .eraseToAnyPublisher()
     }
     
+    var isLoading: AnyPublisher<Bool, Never> {
+        isLoadingSubject.eraseToAnyPublisher()
+    }
+    
     func processAnswer(answer: String?) {
         questions[currentIndexValue].answer = answer ?? nil
         if currentIndexValue == questions.count - 1 {
@@ -118,6 +124,7 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
     }
     
     func viewDidLoad() {
+        isLoadingSubject.send(true)
         testService.getTestBy(categoryName: context.categoryName, difficulty: context.difficulty)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
@@ -137,6 +144,7 @@ extension TestQuestionViewModel: TestQuestionViewModeling {
                     currentQuestionIndex: 0
                 )
                 self.testQuestionTopViewModel = testQuestionTopViewModel
+                self.isLoadingSubject.send(false)
                 self.updateUISubject.send(testQuestionTopViewModel)
             })
             .store(in: &cancellables)

@@ -15,6 +15,8 @@ final class TestQuestionTopView: UIView {
     
     // MARK: - Views
     
+    private lazy var wordContainerSpinnerView: SpinnerView = .init(backgroundColor: .clear)
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .appBackgroundNavyBlue
@@ -75,7 +77,6 @@ final class TestQuestionTopView: UIView {
         super.init(frame: .zero)
         addSubviews()
         setConstraints()
-        observe()
     }
     
     @available(*, unavailable)
@@ -87,6 +88,7 @@ final class TestQuestionTopView: UIView {
         addSubview(containerView)
         containerView.addSubview(wordContainerView)
         wordContainerView.addSubview(wordLabel)
+        wordContainerView.addSubview(wordContainerSpinnerView)
         containerView.addSubview(questionNumberLabel)
         addSubview(categoryContainerView)
         categoryContainerView.addSubview(categoryLabel)
@@ -121,12 +123,13 @@ final class TestQuestionTopView: UIView {
             $0.width.equalTo(285)
         }
         
+        wordContainerSpinnerView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         categoryLabel.snp.remakeConstraints {
             $0.edges.equalToSuperview().inset(10)
         }
-    }
-    
-    private func observe() {
     }
 }
 
@@ -138,5 +141,13 @@ extension TestQuestionTopView {
         wordLabel.text = viewModel.word
         categoryLabel.text = viewModel.categoryName
         questionNumberLabel.text = viewModel.currentQuestionNumberFormatted
+    }
+    
+    func showSpinner() {
+        wordContainerSpinnerView.showSpinner()
+    }
+    
+    func hideSpinner() {
+        wordContainerSpinnerView.hideSpinner()
     }
 }

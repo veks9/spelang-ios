@@ -10,9 +10,9 @@ import UIKit
 final class SpinnerView: UIView {
     
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .medium)
+        let view = UIActivityIndicatorView(style: .large)
         view.hidesWhenStopped = true
-        view.color = .gray
+        view.color = .white
         
         return view
     }()
@@ -35,8 +35,7 @@ final class SpinnerView: UIView {
     
     private func setConstraints() {
         activityIndicatorView.snp.remakeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.height.equalTo(100)
+            $0.edges.equalToSuperview()
         }
     }
 }

@@ -321,8 +321,9 @@ final class TestResultViewController: UIViewController {
         }
     }
     
+    // TODO: - this is not good, change tihs
     private func updateUI(with model: TestResultModel) {
-        testCategoryLabel.text = model.categoryName
+        testCategoryLabel.text = model.categoryName.capitalized
         scoreLabel.text = model.scoreFormatted
         leaderboardPositionLabel.text = "\(model.leaderboardPosition.ordinal) on leaderboard"
         let context = viewModel.context

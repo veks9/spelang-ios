@@ -163,6 +163,17 @@ final class TestQuestionViewController: UIViewController {
     }
     
     private func observe() {
+        viewModel.isLoading
+            .sink(receiveValue: { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.topView.showSpinner()
+                } else {
+                    self.topView.hideSpinner()
+                }
+            })
+            .store(in: &cancellables)
+        
         viewModel.updateUI
             .sink(receiveValue: { [weak self] topViewModel in
                 guard let self = self else { return }
