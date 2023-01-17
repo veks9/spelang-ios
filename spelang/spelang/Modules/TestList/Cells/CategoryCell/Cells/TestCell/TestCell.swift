@@ -17,6 +17,7 @@ final class TestCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = .appGray
         view.layer.cornerRadius = 20
+        view.isHidden = true
         
         return view
     }()
@@ -27,6 +28,7 @@ final class TestCell: UICollectionViewCell {
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.8
+        label.isHidden = true
         
         return label
     }()
@@ -44,13 +46,14 @@ final class TestCell: UICollectionViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .appDarkBlue
+        view.layer.cornerRadius = 40
         
         return view
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.set(textColor: .titlePrimary, font: .systemFont(ofSize: 16, weight: .bold))
+        label.set(textColor: .white, font: .systemFont(ofSize: 30, weight: .bold))
         label.textAlignment = .center
         label.minimumScaleFactor = 0.7
         label.adjustsFontSizeToFitWidth = true
@@ -110,9 +113,11 @@ final class TestCell: UICollectionViewCell {
 extension TestCell {
     func updateUI(viewModel: TestCellViewModel) {
         self.viewModel = viewModel
-        placementLabel.text = "#\(viewModel.leaderboardPosition)"
+        if let leaderboardPosition = viewModel.leaderboardPosition {
+            placementLabel.text = "#\(leaderboardPosition)"
+            placementLabel.isHidden = false
+            placementContainerView.isHidden = false
+        }
         titleLabel.text = viewModel.title
     }
 }
-
-

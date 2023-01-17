@@ -112,6 +112,11 @@
 		716B6E59295A25B90096F780 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6E55295A25B90096F780 /* Model.swift */; };
 		716B6E5A295A25B90096F780 /* ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6E57295A25B90096F780 /* ErrorCode.swift */; };
 		716B6E5B295A25B90096F780 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B6E58295A25B90096F780 /* ErrorResponse.swift */; };
+		7178F2802975CE220018956A /* TestListCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178F27F2975CE220018956A /* TestListCategoryCell.swift */; };
+		7178F2822975CE2D0018956A /* TestListCategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178F2812975CE2D0018956A /* TestListCategoryCellViewModel.swift */; };
+		7178F2842975D3F70018956A /* TestsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178F2832975D3F70018956A /* TestsDataSource.swift */; };
+		7178F2862975D5050018956A /* TestListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178F2852975D5050018956A /* TestListDataSource.swift */; };
+		7178F28A2975D5DD0018956A /* TestListSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178F2892975D5DD0018956A /* TestListSeparatorCell.swift */; };
 		71CBE3752950D2E700DB8F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CBE3742950D2E700DB8F41 /* AppDelegate.swift */; };
 		71CBE37E2950D2EA00DB8F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71CBE37D2950D2EA00DB8F41 /* Assets.xcassets */; };
 		71CBE3812950D2EA00DB8F41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71CBE37F2950D2EA00DB8F41 /* LaunchScreen.storyboard */; };
@@ -225,6 +230,11 @@
 		716B6E55295A25B90096F780 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		716B6E57295A25B90096F780 /* ErrorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCode.swift; sourceTree = "<group>"; };
 		716B6E58295A25B90096F780 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		7178F27F2975CE220018956A /* TestListCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListCategoryCell.swift; sourceTree = "<group>"; };
+		7178F2812975CE2D0018956A /* TestListCategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListCategoryCellViewModel.swift; sourceTree = "<group>"; };
+		7178F2832975D3F70018956A /* TestsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsDataSource.swift; sourceTree = "<group>"; };
+		7178F2852975D5050018956A /* TestListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListDataSource.swift; sourceTree = "<group>"; };
+		7178F2892975D5DD0018956A /* TestListSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListSeparatorCell.swift; sourceTree = "<group>"; };
 		71CBE3712950D2E700DB8F41 /* spelang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spelang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CBE3742950D2E700DB8F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71CBE37D2950D2EA00DB8F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -416,6 +426,7 @@
 				7140F4802971F2530054FA72 /* TestListViewController.swift */,
 				7140F4812971F2530054FA72 /* TestListContext.swift */,
 				7140F4822971F2530054FA72 /* TestListViewModel.swift */,
+				7178F2852975D5050018956A /* TestListDataSource.swift */,
 			);
 			path = TestList;
 			sourceTree = "<group>";
@@ -468,8 +479,8 @@
 		7140F4A02974B05E0054FA72 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7140F4A12974B06D0054FA72 /* TestCell.swift */,
-				7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */,
+				7178F2872975D5810018956A /* TestListSeparatorCell */,
+				7178F27E2975CE0E0018956A /* CategoryCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -709,6 +720,42 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		7178F27D2975CE040018956A /* TestCell */ = {
+			isa = PBXGroup;
+			children = (
+				7140F4A12974B06D0054FA72 /* TestCell.swift */,
+				7140F4A32974B0B00054FA72 /* TestCellViewModel.swift */,
+				7178F2832975D3F70018956A /* TestsDataSource.swift */,
+			);
+			path = TestCell;
+			sourceTree = "<group>";
+		};
+		7178F27E2975CE0E0018956A /* CategoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				7178F2882975D5980018956A /* Cells */,
+				7178F27F2975CE220018956A /* TestListCategoryCell.swift */,
+				7178F2812975CE2D0018956A /* TestListCategoryCellViewModel.swift */,
+			);
+			path = CategoryCell;
+			sourceTree = "<group>";
+		};
+		7178F2872975D5810018956A /* TestListSeparatorCell */ = {
+			isa = PBXGroup;
+			children = (
+				7178F2892975D5DD0018956A /* TestListSeparatorCell.swift */,
+			);
+			path = TestListSeparatorCell;
+			sourceTree = "<group>";
+		};
+		7178F2882975D5980018956A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7178F27D2975CE040018956A /* TestCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		71CBE3682950D2E700DB8F41 = {
 			isa = PBXGroup;
 			children = (
@@ -892,12 +939,14 @@
 				716B6E52295A24CD0096F780 /* Assets.swift in Sources */,
 				37FF92822974229D00FED2EE /* TestResultDetailsDataSource.swift in Sources */,
 				716B6E1F295A242D0096F780 /* Array+.swift in Sources */,
+				7178F2862975D5050018956A /* TestListDataSource.swift in Sources */,
 				716B6E44295A24570096F780 /* UserDefaultsStoring.swift in Sources */,
 				716B6E21295A242D0096F780 /* Data+.swift in Sources */,
 				7140F4712971DDB20054FA72 /* LoginTextFieldViewModel.swift in Sources */,
 				37FF92982974BDC700FED2EE /* TestLeaderboardRouter.swift in Sources */,
 				7140F4702971DDB20054FA72 /* LoginTextFieldView.swift in Sources */,
 				716B6E18295A242D0096F780 /* UIScreen+.swift in Sources */,
+				7178F2822975CE2D0018956A /* TestListCategoryCellViewModel.swift in Sources */,
 				716B6E05295A242D0096F780 /* CALayer+.swift in Sources */,
 				716B6E0E295A242D0096F780 /* UILabel+.swift in Sources */,
 				7140F4832971F2530054FA72 /* TestListRouter.swift in Sources */,
@@ -905,6 +954,7 @@
 				716B6E0D295A242D0096F780 /* UIViewController+.swift in Sources */,
 				716B6E51295A24CD0096F780 /* AppConstants.swift in Sources */,
 				716B6E19295A242D0096F780 /* Int+.swift in Sources */,
+				7178F2802975CE220018956A /* TestListCategoryCell.swift in Sources */,
 				7140F48F2971F2C50054FA72 /* TestQuestionViewModel.swift in Sources */,
 				7140F4852971F2530054FA72 /* TestListContext.swift in Sources */,
 				37FF92A129754BDF00FED2EE /* UserLeaderboardPositionCellViewModel.swift in Sources */,
@@ -933,6 +983,7 @@
 				7140F4742971E61C0054FA72 /* UserService.swift in Sources */,
 				716B6E24295A242D0096F780 /* Dictionary+.swift in Sources */,
 				716B6E5B295A25B90096F780 /* ErrorResponse.swift in Sources */,
+				7178F2842975D3F70018956A /* TestsDataSource.swift in Sources */,
 				37FF929F29754BC200FED2EE /* UserLeaderboardPositionCell.swift in Sources */,
 				7140F49F297480A80054FA72 /* TestResultModel.swift in Sources */,
 				716B6E03295A242D0096F780 /* AnyPublisher+.swift in Sources */,
@@ -982,6 +1033,7 @@
 				716B6E04295A242D0096F780 /* UINavigationController+.swift in Sources */,
 				37FF92A82975503900FED2EE /* TestLeaderboardService.swift in Sources */,
 				716B6E15295A242D0096F780 /* UITableView+.swift in Sources */,
+				7178F28A2975D5DD0018956A /* TestListSeparatorCell.swift in Sources */,
 				37ED27262971DD6A0065FCFA /* RecognizedInk.swift in Sources */,
 				37FF92A329754CFE00FED2EE /* TestLeaderboardDataSource.swift in Sources */,
 				7140F4792971E6790054FA72 /* LoginUserRequest.swift in Sources */,
