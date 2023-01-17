@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 struct TestLeaderboardRequest: APIRequest {
-    typealias ResponseType = [Model.TestLeaderboardPosition]
+    typealias ResponseType = Model.GetTestLeaderboardResponse
         
     var path: String {
         return Endpoint.testLeaderboard.path
@@ -23,5 +23,11 @@ struct TestLeaderboardRequest: APIRequest {
     
     init(difficulty: String, category: String) {
         requestBody = Model.TestLeaderboardRequest(difficulty: difficulty, category: category).data
+    }
+}
+
+extension Model {
+    struct GetTestLeaderboardResponse: Codable {
+        let data: [Model.TestLeaderboardPosition]
     }
 }

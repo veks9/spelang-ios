@@ -17,9 +17,8 @@ final class UserLeaderboardPositionCell: UITableViewCell {
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
-        // TODO: fix alignment and distribution to match design from figma
         view.alignment = .center
-        view.distribution = .fillEqually
+        view.distribution = .fillProportionally
         view.backgroundColor = .clear
         
         return view
@@ -51,7 +50,8 @@ final class UserLeaderboardPositionCell: UITableViewCell {
     
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .appBackgroundNavyBlue
+        view.backgroundColor = .red
+//        view.backgroundColor = .appBackgroundNavyBlue
         
         return view
     }()
@@ -91,8 +91,12 @@ final class UserLeaderboardPositionCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(25)
         }
         
+        leaderboardPositionLabel.snp.remakeConstraints {
+            $0.width.equalTo(50)
+        }
+        
         separatorView.snp.remakeConstraints {
-            $0.top.equalTo(stackView.snp.bottom).offset(5)
+            $0.height.equalTo(3)
             $0.bottom.equalToSuperview().offset(-10)
         }
     }

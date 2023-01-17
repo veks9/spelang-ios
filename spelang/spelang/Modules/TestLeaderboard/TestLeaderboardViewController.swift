@@ -99,6 +99,7 @@ final class TestLeaderboardViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.delegate = self
         tableView.register(UserLeaderboardPositionCell.self, forCellReuseIdentifier: UserLeaderboardPositionCell.identity)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
@@ -107,6 +108,15 @@ final class TestLeaderboardViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         
         return tableView
+    }()
+    
+    private lazy var closeTestLeaderboardButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.setImage(Assets.closeIcon.image, for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 12.5, left: 12.5, bottom: 12.5, right: 12.5)
+        
+        return button
     }()
     
     
@@ -133,6 +143,7 @@ final class TestLeaderboardViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(backgroundImageView)
+        view.addSubview(closeTestLeaderboardButton)
         view.addSubview(leaderboardTitleContainerView)
         leaderboardTitleContainerView.addSubview(leaderboardTitleStackView)
         leaderboardTitleStackView.addArrangedSubview(leaderboardTitleLabel)
@@ -141,12 +152,18 @@ final class TestLeaderboardViewController: UIViewController {
         leaderboardTableContainerView.addSubview(blurEffectView)
         leaderboardTableContainerView.addSubview(testCategoryContainerView)
         testCategoryContainerView.addSubview(testCategoryLabel)
-        testCategoryContainerView.addSubview(tableView)
+        leaderboardTableContainerView.addSubview(tableView)
     }
     
     private func setConstraints() {
         backgroundImageView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        closeTestLeaderboardButton.snp.remakeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.width.equalTo(45)
         }
         
         leaderboardTitleContainerView.snp.remakeConstraints {
@@ -197,6 +214,10 @@ final class TestLeaderboardViewController: UIViewController {
                 }
             })
             .store(in: &cancellables)
+        
+        closeTestLeaderboardButton.onTap {
+            
+        }
     }
 }
 
@@ -206,5 +227,13 @@ extension TestLeaderboardViewController {
     func updateUI() {
         testCategoryLabel.text = viewModel.testCategoryName
         tableView.dataSource = viewModel.dataSource
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension TestLeaderboardViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
     }
 }
